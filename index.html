@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy Choco House</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chocolate: {
+                            light: '#D2691E',
+                            DEFAULT: '#8B4513',
+                            dark: '#5D2906'
+                        },
+                        cream: {
+                            light: '#FFFDD0',
+                            DEFAULT: '#FFF8DC',
+                            dark: '#F5DEB3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFF8E1;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23be8a60' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, .fancy-text {
+            font-family: 'Courgette', cursive;
+        }
+
+        .navbar {
+            background-color: rgba(255, 248, 225, 0.9);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+        }
+
+        .chocolate-btn {
+            background: linear-gradient(135deg, #D2691E, #8B4513);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+        }
+
+        .chocolate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        .teddy-accent {
+            background-color: #E6CCB2;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #D2691E, #8B4513);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
+            border: 2px dashed #D2691E;
+        }
+
+        .chocolate-drip {
+            position: absolute;
+            top: -15px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%238B4513' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,218.7C672,203,768,149,864,144C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .heart-particle {
+            position: absolute;
+            font-size: 20px;
+            color: #D2691E;
+            animation: heartFade 3s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes heartFade {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            10% { transform: translateY(-10px) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-60px) scale(0); opacity: 0; }
+        }
+
+        /* Custom animations */
+        [data-scroll] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        [data-scroll].visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,245,238,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #D2691E, #8B4513);
+            color: white;
+        }
+        
+        .custom-shadow {
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);
+        }
+        #productGrid {
+            min-height: 500px;
+            position: relative;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #8B4513;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .product-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed w-full top-0 z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/api/placeholder/50/50" alt="Logo" class="w-12 h-12 mr-3 rounded-full border-2 border-chocolate">
+                <h1 class="text-2xl font-bold text-chocolate">Yummy Choco House</h1>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
+                <a href="#shop" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Products</a>
+                <a href="#about" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">About</a>
+                <a href="#footer" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Contact</a>
+            </div>
+            
+            <!-- WhatsApp Button -->
+            <div class="hidden md:block">
+                <a href="#" class="chocolate-btn text-white font-medium px-4 py-2 rounded-full flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Order Now
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-chocolate hover:text-chocolate-light focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <!-- <div id="mobile-menu" class="mobile-menu fixed left-0 top-0 h-full w-64 bg-cream-light shadow-lg z-50 pt-20 px-6">
+            <button id="close-menu" class="absolute top-5 right-5 text-chocolate hover:text-chocolate-light">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="flex flex-col space-y-6">
+                <a href="#" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
+                <a href="#shop" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Products</a>
+                <a href="#about" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">About</a>
+                <a href="#footer" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Contact</a>
+                <a href="#" class="chocolate-btn text-white font-medium px-4 py-2 rounded-full text-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Order Now
+                </a>
+            </div>
+        </div> -->
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-28 pb-16 px-4" id="hero">
+        <div class="container mx-auto">
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 left-10 hidden md:block">
+                <!-- <img src="https://addictedtodates.com/wp-content/uploads/2019/01/vegan-milk-chocolate-recipe.jpg" alt="Chocolate" class="floating opacity-60" style="animation-delay: 0.5s;"> -->
+            </div>
+            <div class="absolute bottom-20 right-10 hidden md:block">
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCc71BaAcYUrBi5od6rlRelNyTCRuA9AtqBg&s" alt="Teddy" class="floating opacity-70" style="animation-delay: 1s;"> -->
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left Column - Content -->
+                <div>
+                    <div class="mb-4 inline-block">
+                        <span class="px-4 py-1 rounded-full bg-cream-dark text-chocolate-dark text-sm font-bold">Sweet Delights</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-chocolate-dark">
+                        Sweet Gifts for<br>
+                        <span class="text-chocolate">Special Moments</span>
+                    </h1>
+                    
+                    <p class="text-chocolate text-lg mb-8">
+                        Discover our adorable collection of chocolate boxes, teddy bears, and unique gifts that make every occasion memorable and delightful.
+                    </p>
+                    
+                    <!-- Name Input Form -->
+                    <div class="hero-card p-6 relative mb-8">
+                        <div class="chocolate-drip"></div>
+                        <h3 class="text-xl text-chocolate-dark font-bold mb-4">Tell us your name to get started</h3>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Enter your name" 
+                                class="flex-grow px-4 py-3 rounded-lg border-2 border-cream-dark focus:outline-none focus:border-chocolate"
+                            >
+                            <button 
+                                id="explore-btn" 
+                                class="chocolate-btn text-white font-medium px-6 py-3 rounded-lg flex items-center justify-center"
+                            >
+                                <span>Explore Gifts</span>
+                                <i class="fas fa-gift ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Made with Love</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Fast Delivery</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Easy Ordering</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Image -->
+                <div class="flex justify-center" id="hero-image-container">
+                    <div class="relative">
+                        <!-- Chocolate background circle -->
+                        <div class="absolute inset-0 w-full h-full rounded-full bg-gradient-to-br from-chocolate-light to-chocolate-dark opacity-20 transform scale-110 blur-xl"></div>
+                        
+                        <!-- Inner circle with teddy accent -->
+                        <div class="teddy-accent w-64 h-64 md:w-80 md:h-80 flex items-center justify-center p-3 relative overflow-hidden">
+                            <!-- Heart particles container -->
+                            <div id="heart-particles" class="absolute inset-0"></div>
+                            
+                            <img 
+                                src="https://lk-live-21.slatic.net/kf/S8d91fcdd11954436a2235dc31baad8faK.jpg" 
+                                alt="Chocolate Gift Box with Teddy" 
+                                class="object-cover rounded-full p-2 border-4 border-chocolate shadow-lg"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Categories -->
+    <div class="container mx-auto px-4 mb-8" id="categories">
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button class="category-btn active bg-chocolate text-white px-4 py-2 rounded-full hover:bg-chocolate-light transition" data-category="all">All Items</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="chocolate">Chocolates</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="teddy">Teddy Bears</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="valentine">Valentine's Special</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="gift">Gifts</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="toy">Toys</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="perfume">Perfumes</button>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="shop" class="container mx-auto px-4 mb-16 pt-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-chocolate-dark">Our Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid"></div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-cream-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">About Us</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-chocolate rounded-2xl opacity-20 transform rotate-3"></div>
+                    <img src="/api/placeholder/500/400" alt="Our Story" class="rounded-2xl relative z-10 shadow-lg">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-chocolate-dark mb-4">Our Sweet Journey</h3>
+                    <p class="text-chocolate mb-6">
+                        Yummy Choco House started as a small family business with a passion for creating delightful chocolate treats and gift experiences. Since 2023, we have been dedicated to making special moments even sweeter for our customers.
+                    </p>
+                    <p class="text-chocolate mb-6">
+                        We carefully select the finest ingredients and create unique gift combinations that bring joy and happiness to your loved ones. Every product is crafted with love and attention to detail.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">100+</div>
+                            <div class="text-chocolate">Happy Customers</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">50+</div>
+                            <div class="text-chocolate">Gift Options</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">7+</div>
+                            <div class="text-chocolate">Categories</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-chocolate-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Yummy Choco House</h3>
+                    <p class="text-gray-300">Making moments sweeter since 2023</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-chocolate mt-6 pt-6 text-center text-gray-300">
+                &copy; 2025 Yummy Choco House. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <!-- <script>
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Navbar animation
+            gsap.from('nav', {
+                y: -100,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+            
+            // Hero content animations
+            const heroTl = gsap.timeline();
+            
+            heroTl.from('.mb-4.inline-block', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            })
+            .from('h1', {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.4')
+            .from('p', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.6')
+            .from('.hero-card', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.4')
+            .from('.flex.flex-wrap', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.4')
+            .from('.teddy-accent', {
+                scale: 0.5,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'elastic.out(1, 0.5)'
+            }, '-=0.6');
+            
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+            
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+            
+            // Heart particles effect on hero image
+            const heartParticlesContainer = document.getElementById('heart-particles');
+            const heroImageContainer = document.getElementById('hero-image-container');
+            
+            function createHeart() {
+                if (!heartParticlesContainer) return;
+                
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = '❤';
+                
+                // Random position within the container
+                const xPos = Math.random() * 100;
+                const yPos = Math.random() * 100;
+                
+                heart.style.left = `${xPos}%`;
+                heart.style.top = `${yPos}%`;
+                
+                // Random animation duration
+                const animDuration = 2 + Math.random() * 3;
+                heart.style.animationDuration = `${animDuration}s`;
+                
+                heartParticlesContainer.appendChild(heart);
+                
+                // Remove the heart after animation completes
+                setTimeout(() => {
+                    heart.remove();
+                }, animDuration * 1000);
+            }
+            
+            // Create hearts periodically
+            setInterval(createHeart, 500);
+            
+            // Create initial hearts
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createHeart, i * 300);
+            }
+            
+            // Explore button effect
+            const exploreBtn = document.getElementById('explore-btn');
+            exploreBtn.addEventListener('click', () => {
+                const customerName = document.getElementById('customer-name').value.trim();
+                if (customerName) {
+                    // Add a little animation when clicked
+                    gsap.to(exploreBtn, {
+                        scale: 0.95,
+                        duration: 0.1,
+                        onComplete: () => {
+                            gsap.to(exploreBtn, {
+                                scale: 1,
+                                duration: 0.3,
+                                ease: 'elastic.out(1, 0.3)'
+                            });
+                        }
+                    });
+                    
+                    // Scroll to products section would go here
+                    console.log(`Hello, ${customerName}! Let's explore products.`);
+                    // You can add scroll to products section here
+                }
+            });
+        });
+    </script>
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // WhatsApp Phone Number
+        const phoneNumber = '94762057685';
+
+        // Product data with unique product IDs
+        const products = [
+            { 
+                id: "CHO001",
+                name: "Milk Chocolate Box", 
+                price: "Rs. 1,500", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s", 
+                category: "chocolate"
+            },
+            { 
+                id: "CHO002",
+                name: "Dark Chocolate Collection", 
+                price: "Rs. 1,800", 
+                image: "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg", 
+                category: "chocolate"
+            },
+            { 
+                id: "VAL001",
+                name: "Valentine's Heart Box", 
+                price: "Rs. 2,500", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s", 
+                category: "valentine"
+            },
+            { 
+                id: "TED001",
+                name: "Teddy Bear - Brown", 
+                price: "Rs. 1,200", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s", 
+                category: "teddy"
+            },
+            { 
+                id: "TED002",
+                name: "Teddy Bear - Pink", 
+                price: "Rs. 1,200", 
+                image: "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg", 
+                category: "teddy"
+            },
+            { 
+                id: "GFT001",
+                name: "Luxury Chocolate Gift Set", 
+                price: "Rs. 3,500", 
+                image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1", 
+                category: "gift"
+            },
+            { 
+                id: "KEY001",
+                name: "Heart-shaped Key Tag", 
+                price: "Rs. 350", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
+                category: "gift"
+            },
+            { 
+                id: "PER001",
+                name: "Valentine's Special Perfume", 
+                price: "Rs. 1,800", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCRYJFG05lqBp5zO8oLAv9a3gbn-Uh67prQ&s", 
+                category: "perfume"
+            },
+            { 
+                id: "TOY001",
+                name: "Small Soft Toy - Rabbit", 
+                price: "Rs. 850", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwEe9EzMPYXDVPjU_92AKa4nu5BO3MzT-AkQ&s", 
+                category: "toy"
+            },
+            { 
+                id: "VAL002",
+                name: "Valentine's Couple Teddy Set", 
+                price: "Rs. 2,200", 
+                image: "https://m.media-amazon.com/images/I/51k72sm65hL._AC_UF1000,1000_QL80_.jpg", 
+                category: "valentine"
+            },
+            { 
+                id: "CHO003",
+                name: "Premium Chocolate Assortment", 
+                price: "Rs. 2,800", 
+                image: "https://m.media-amazon.com/images/I/61P9fT4QAWL._SL1200_.jpg", 
+                category: "chocolate"
+            },
+            { 
+                id: "KEY002",
+                name: "Custom Name Key Tag", 
+                price: "Rs. 450", 
+                image: "https://static-01.daraz.lk/p/f940c91611eb51921be90dd9f892b3b9.jpg", 
+                category: "gift"
+            }
+        ];
+
+        // Function to render products
+        function renderProducts(filterCategory = 'all') {
+            const container = document.getElementById('productGrid');
+            container.innerHTML = ''; // Clear previous content
+
+            // Filter products based on category
+            const filteredProducts = filterCategory === 'all' 
+                ? products 
+                : products.filter(product => product.category === filterCategory);
+
+            // Create product cards
+            filteredProducts.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl overflow-hidden custom-shadow transition-all duration-300 card-hover product-card';
+                card.setAttribute('data-category', product.category);
+                card.innerHTML = `
+                <div class="relative">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <span class="absolute top-3 right-3 bg-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
+                    <span class="absolute top-3 left-3 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">${product.id}</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-1">${product.name}</h3>
+                    <p class="font-bold text-chocolate mb-3">${product.price}</p>
+                    <div class="mb-3">
+                    <select id="qty-${product.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chocolate text-gray-700">
+                        <option value="1">Qty: 1</option>
+                        <option value="2">Qty: 2</option>
+                        <option value="3">Qty: 3</option>
+                        <option value="4">Qty: 4</option>
+                        <option value="5">Qty: 5</option>
+                    </select>
+                    </div>
+                    <button 
+                    class="w-full bg-gradient-to-r from-chocolate-light to-chocolate text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition flex items-center justify-center"
+                    onclick="buyNow('${product.id}', '${product.name}', '${product.price}')"
+                    >
+                    <i class="fab fa-whatsapp mr-2"></i> Buy Now
+                    </button>
+                </div>
+                `;
+                container.appendChild(card);
+
+                // Animate cards using GSAP
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // If no products match the filter
+            if (filteredProducts.length === 0) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.className = 'col-span-full text-center py-8 text-gray-600';
+                emptyMessage.innerHTML = `
+                    <i class="fas fa-search text-4xl mb-3 text-chocolate-light"></i>
+                    <p class="text-lg">No products found in this category.</p>
+                `;
+                container.appendChild(emptyMessage);
+            }
+        }
+
+        // Function to handle "Buy Now" click
+        function buyNow(productId, productName, productPrice) {
+            // Get selected quantity
+            const quantitySelect = document.getElementById(`qty-${productId}`);
+            const quantity = quantitySelect.value;
+            
+            // Get user name (if provided)
+            const userName = document.getElementById('username').value.trim() || 'Customer';
+            
+            // Create WhatsApp message
+            // const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:\n\n🎁 *Product*:${productName}* (${productId})\n🔢 *Quantity*: ${quantity}\n💰 *Price*:  ${productPrice}\n\nPlease let me know the delivery details. Thank you!`;
+            
+            const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:
+
+🎁 *Product*: *${productName}* (${productId})  
+🔢 *Quantity*: *${quantity}*  
+💰 *Price*: *${productPrice}*
+
+Please let me know the payment details and delivery options. Thank you!`;
+
+
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Open WhatsApp with the message
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Filter products based on category
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button styles
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-chocolate', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-700');
+                });
+                this.classList.add('active', 'bg-chocolate', 'text-white');
+                this.classList.remove('bg-white', 'text-gray-700');
+                
+                // Filter products
+                const category = this.getAttribute('data-category');
+                renderProducts(category);
+            });
+        });
+
+        // Mobile menu functionality
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('active');
+        });
+
+        document.getElementById('close-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('active');
+        });
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const scrollElements = document.querySelectorAll('[data-scroll]');
+            
+            const elementInView = (el, percentageScroll = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementHeight = el.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                return (
+                    elementTop <= windowHeight - (elementHeight * (percentageScroll/100))
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 80)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            // Initialize
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        }
+
+        // Hero image heart animation
+        function createHeartParticles() {
+            const heartContainer = document.getElementById('heart-particles');
+            const createHeart = () => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // Random position within container
+                const leftPos = Math.random() * 100;
+                heart.style.left = `${leftPos}%`;
+                
+                // Random animation delay
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                
+                heartContainer.appendChild(heart);
+                
+                // Remove heart after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            };
+            
+            // Create hearts at intervals
+            setInterval(createHeart, 500);
+        }
+
+        // Explore button functionality
+        document.getElementById('explore-btn').addEventListener('click', function() {
+            const userName = document.getElementById('username').value.trim();
+            if (userName) {
+                // Save name for later use
+                localStorage.setItem('userName', userName);
+                
+                // Scroll to products section
+                document.getElementById('shop').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Show welcome message
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-chocolate text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center';
+                toast.innerHTML = `
+                    <i class="fas fa-heart mr-2"></i>
+                    <span>Welcome ${userName}! Browse our sweet collection ❤️</span>
+                `;
+                document.body.appendChild(toast);
+                
+                // Remove toast after 5 seconds
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            } else {
+                // Alert if name is empty
+                alert('Please enter your name to continue');
+                document.getElementById('username').focus();
+            }
+        });
+
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Render all products initially
+            renderProducts();
+            
+            // Initialize scroll animations
+            initScrollAnimations();
+            
+            // Initialize heart particles
+            createHeartParticles();
+            
+            // Check if returning user
+            const savedName = localStorage.getItem('userName');
+            if (savedName) {
+                document.getElementById('username').value = savedName;
+            }
+            
+            // GSAP animations
+            gsap.from('#hero h1', {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('#hero p', {
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                delay: 0.3,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-card', {
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                delay: 0.5,
+                ease: 'power3.out'
+            });
+            
+            // Hero image animation
+            gsap.from('#hero-image-container', {
+                opacity: 0,
+                scale: 0.8,
+                duration: 1,
+                ease: 'back.out(1.7)'
+            });
+            
+            // About section animations
+            ScrollTrigger.batch('#about .grid > div', {
+                onEnter: batch => gsap.to(batch, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                }),
+                start: 'top 80%'
+            });
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        document.getElementById('mobile-menu').classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script> -->
+
+
+    <script>
+        // Initialize GSAP
+document.addEventListener('DOMContentLoaded', () => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // WhatsApp Phone Number
+    const phoneNumber = '94762057685';
+
+    // Product data with unique product IDs
+    const products = [
+        { 
+            id: "CHO001",
+            name: "Milk Chocolate Box", 
+            price: "Rs. 1,500", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s", 
+            category: "chocolate"
+        },
+        { 
+            id: "CHO002",
+            name: "Dark Chocolate Collection", 
+            price: "Rs. 1,800", 
+            image: "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg", 
+            category: "chocolate"
+        },
+        { 
+            id: "VAL001",
+            name: "Valentine's Heart Box", 
+            price: "Rs. 2,500", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s", 
+            category: "valentine"
+        },
+        { 
+            id: "TED001",
+            name: "Teddy Bear - Brown", 
+            price: "Rs. 1,200", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s", 
+            category: "teddy"
+        },
+        { 
+            id: "TED002",
+            name: "Teddy Bear - Pink", 
+            price: "Rs. 1,200", 
+            image: "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg", 
+            category: "teddy"
+        },
+        { 
+            id: "GFT001",
+            name: "Luxury Chocolate Gift Set", 
+            price: "Rs. 3,500", 
+            image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1", 
+            category: "gift"
+        },
+        { 
+            id: "KEY001",
+            name: "Heart-shaped Key Tag", 
+            price: "Rs. 350", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
+            category: "gift"
+        },
+        { 
+            id: "PER001",
+            name: "Valentine's Special Perfume", 
+            price: "Rs. 1,800", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCRYJFG05lqBp5zO8oLAv9a3gbn-Uh67prQ&s", 
+            category: "perfume"
+        },
+        { 
+            id: "TOY001",
+            name: "Small Soft Toy - Rabbit", 
+            price: "Rs. 850", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwEe9EzMPYXDVPjU_92AKa4nu5BO3MzT-AkQ&s", 
+            category: "toy"
+        },
+        { 
+            id: "VAL002",
+            name: "Valentine's Couple Teddy Set", 
+            price: "Rs. 2,200", 
+            image: "https://m.media-amazon.com/images/I/51k72sm65hL._AC_UF1000,1000_QL80_.jpg", 
+            category: "valentine"
+        },
+        { 
+            id: "CHO003",
+            name: "Premium Chocolate Assortment", 
+            price: "Rs. 2,800", 
+            image: "https://m.media-amazon.com/images/I/61P9fT4QAWL._SL1200_.jpg", 
+            category: "chocolate"
+        },
+        { 
+            id: "KEY002",
+            name: "Custom Name Key Tag", 
+            price: "Rs. 450", 
+            image: "https://static-01.daraz.lk/p/f940c91611eb51921be90dd9f892b3b9.jpg", 
+            category: "gift"
+        }
+    ];
+
+    // Function to render products
+    function renderProducts(filterCategory = 'all') {
+        const container = document.getElementById('productGrid');
+        if (!container) {
+            console.error('Product grid container not found');
+            return;
+        }
+        
+        container.innerHTML = ''; // Clear previous content
+
+        // Filter products based on category
+        const filteredProducts = filterCategory === 'all' 
+            ? products 
+            : products.filter(product => product.category === filterCategory);
+
+        // Create product cards
+        filteredProducts.forEach((product, index) => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl overflow-hidden custom-shadow transition-all duration-300 card-hover product-card opacity-0 transform translate-y-8';
+            card.setAttribute('data-category', product.category);
+            card.innerHTML = `
+            <div class="relative">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                <span class="absolute top-3 right-3 bg-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
+                <span class="absolute top-3 left-3 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">${product.id}</span>
+            </div>
+            <div class="p-4">
+                <h3 class="font-semibold text-lg text-gray-800 mb-1">${product.name}</h3>
+                <p class="font-bold text-chocolate mb-3">${product.price}</p>
+                <div class="mb-3">
+                <select id="qty-${product.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chocolate text-gray-700">
+                    <option value="1">Qty: 1</option>
+                    <option value="2">Qty: 2</option>
+                    <option value="3">Qty: 3</option>
+                    <option value="4">Qty: 4</option>
+                    <option value="5">Qty: 5</option>
+                </select>
+                </div>
+                <button 
+                class="w-full bg-gradient-to-r from-chocolate-light to-chocolate text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition flex items-center justify-center buy-now-btn"
+                data-product-id="${product.id}"
+                data-product-name="${product.name}"
+                data-product-price="${product.price}"
+                >
+                <i class="fab fa-whatsapp mr-2"></i> Buy Now
+                </button>
+            </div>
+            `;
+            container.appendChild(card);
+
+            // Animate cards using GSAP with a slight delay
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        // If no products match the filter
+        if (filteredProducts.length === 0) {
+            const emptyMessage = document.createElement('div');
+            emptyMessage.className = 'col-span-full text-center py-8 text-gray-600';
+            emptyMessage.innerHTML = `
+                <i class="fas fa-search text-4xl mb-3 text-chocolate-light"></i>
+                <p class="text-lg">No products found in this category.</p>
+            `;
+            container.appendChild(emptyMessage);
+        }
+
+        // Add event listeners to Buy Now buttons
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const productName = this.getAttribute('data-product-name');
+                const productPrice = this.getAttribute('data-product-price');
+                buyNow(productId, productName, productPrice);
+            });
+        });
+    }
+
+    // Function to handle "Buy Now" click
+    window.buyNow = function(productId, productName, productPrice) {
+        // Get selected quantity
+        const quantitySelect = document.getElementById(`qty-${productId}`);
+        if (!quantitySelect) {
+            console.error(`Quantity select for ${productId} not found`);
+            return;
+        }
+        const quantity = quantitySelect.value;
+        
+        // Get user name (if provided)
+        const userNameInput = document.getElementById('username');
+        const userName = userNameInput && userNameInput.value.trim() ? userNameInput.value.trim() : 'Customer';
+        
+        // Create WhatsApp message
+        const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:
+
+🎁 *Product*: *${productName}* (${productId})  
+🔢 *Quantity*: *${quantity}*  
+💰 *Price*: *${productPrice}*
+
+Please let me know the payment details and delivery options. Thank you!`;
+
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Open WhatsApp with the message
+        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+    };
+
+    // Initialize category buttons
+    function initCategoryButtons() {
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button styles
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-chocolate', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-700');
+                });
+                this.classList.add('active', 'bg-chocolate', 'text-white');
+                this.classList.remove('bg-white', 'text-gray-700');
+                
+                // Filter products
+                const category = this.getAttribute('data-category');
+                renderProducts(category);
+            });
+        });
+    }
+
+    // Mobile menu functionality
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && closeMenu && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        }
+    }
+
+    // Scroll animations
+    function initScrollAnimations() {
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            const elementHeight = el.offsetHeight;
+            const windowHeight = window.innerHeight;
+            
+            return (
+                elementTop <= windowHeight - (elementHeight * (percentageScroll/100))
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        // Initialize
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation();
+    }
+
+    // Hero image heart animation
+    function createHeartParticles() {
+        const heartContainer = document.getElementById('heart-particles');
+        if (!heartContainer) return;
+        
+        const createHeart = () => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            
+            // Random position within container
+            const leftPos = Math.random() * 100;
+            heart.style.left = `${leftPos}%`;
+            
+            // Random animation delay
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+            
+            heartContainer.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        };
+        
+        // Create hearts at intervals
+        setInterval(createHeart, 500);
+        
+        // Create initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    }
+
+    // Explore button functionality
+    function initExploreButton() {
+        const exploreBtn = document.getElementById('explore-btn');
+        if (!exploreBtn) return;
+        
+        exploreBtn.addEventListener('click', function() {
+            const usernameInput = document.getElementById('username');
+            if (!usernameInput) return;
+            
+            const userName = usernameInput.value.trim();
+            if (userName) {
+                // Save name for later use
+                localStorage.setItem('userName', userName);
+                
+                // Add button click animation
+                gsap.to(exploreBtn, {
+                    scale: 0.95,
+                    duration: 0.1,
+                    onComplete: () => {
+                        gsap.to(exploreBtn, {
+                            scale: 1,
+                            duration: 0.3,
+                            ease: 'elastic.out(1, 0.3)'
+                        });
+                    }
+                });
+                
+                // Scroll to products section
+                const shopSection = document.getElementById('shop');
+                if (shopSection) {
+                    shopSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Show welcome message
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-chocolate text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center opacity-0';
+                toast.style.transition = 'opacity 0.5s ease';
+                toast.innerHTML = `
+                    <i class="fas fa-heart mr-2"></i>
+                    <span>Welcome ${userName}! Browse our sweet collection ❤️</span>
+                `;
+                document.body.appendChild(toast);
+                
+                // Show toast with animation
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                }, 100);
+                
+                // Remove toast after 5 seconds
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            } else {
+                // Alert if name is empty
+                alert('Please enter your name to continue');
+                usernameInput.focus();
+            }
+        });
+    }
+
+    // Navbar animations
+    function initNavbarAnimations() {
+        gsap.from('nav', {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    }
+
+    // Hero section animations
+    function initHeroAnimations() {
+        const heroTl = gsap.timeline();
+        
+        // Check if hero elements exist before animating
+        const heroTitle = document.querySelector('#hero h1');
+        const heroDescription = document.querySelector('#hero p');
+        const heroCard = document.querySelector('.hero-card');
+        const heroImage = document.querySelector('#hero-image-container');
+        
+        if (heroTitle) {
+            heroTl.from(heroTitle, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        }
+        
+        if (heroDescription) {
+            heroTl.from(heroDescription, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.6');
+        }
+        
+        if (heroCard) {
+            heroTl.from(heroCard, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.4');
+        }
+        
+        if (heroImage) {
+            heroTl.from(heroImage, {
+                scale: 0.8,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'back.out(1.7)'
+            }, '-=0.6');
+        }
+        
+        // Teddy accent animations if they exist
+        const teddyAccents = document.querySelectorAll('.teddy-accent');
+        if (teddyAccents.length > 0) {
+            heroTl.from(teddyAccents, {
+                scale: 0.5,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: 'elastic.out(1, 0.5)'
+            }, '-=0.6');
+        }
+    }
+
+    // About section animations
+    function initAboutSectionAnimations() {
+        const aboutSection = document.querySelector('#about');
+        if (!aboutSection) return;
+        
+        ScrollTrigger.batch('#about .grid > div', {
+            onEnter: batch => gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: 'power3.out'
+            }),
+            start: 'top 80%'
+        });
+    }
+
+    // Smooth scroll functionality
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+    }
+
+    // Check for returning user
+    function checkReturningUser() {
+        const savedName = localStorage.getItem('userName');
+        const usernameInput = document.getElementById('username');
+        if (savedName && usernameInput) {
+            usernameInput.value = savedName;
+        }
+    }
+
+    // Initialize all functions
+    function initializeAll() {
+        // Initialize all product functionality first
+        renderProducts('all'); // Load all products initially
+        initCategoryButtons();
+        
+        // Initialize UI components
+        initMobileMenu();
+        initScrollAnimations();
+        createHeartParticles();
+        initExploreButton();
+        
+        // Initialize animations
+        initNavbarAnimations();
+        initHeroAnimations();
+        initAboutSectionAnimations();
+        
+        // Initialize other functionalities
+        initSmoothScroll();
+        checkReturningUser();
+    }
+
+    // Run everything on page load
+    initializeAll();
+});
+    </script>
+</body>
+</html>
