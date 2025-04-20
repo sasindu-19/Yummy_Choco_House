@@ -229,7 +229,7 @@
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-8">
-                <a href="#" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
+                <a href="#hero" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
                 <a href="#shop" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Products</a>
                 <a href="#about" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">About</a>
                 <a href="#footer" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Contact</a>
@@ -244,12 +244,12 @@
             </div>
             
             <!-- Mobile Menu Button -->
-            <div class="md:hidden">
+            <!-- <div class="md:hidden">
                 <button id="menu-toggle" class="text-chocolate hover:text-chocolate-light focus:outline-none">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
-        </div>
+        </div> -->
         
         <!-- Mobile Navigation Menu -->
         <!-- <div id="mobile-menu" class="mobile-menu fixed left-0 top-0 h-full w-64 bg-cream-light shadow-lg z-50 pt-20 px-6">
@@ -350,7 +350,7 @@
                             <div id="heart-particles" class="absolute inset-0"></div>
                             
                             <img 
-                                src="https://lk-live-21.slatic.net/kf/S8d91fcdd11954436a2235dc31baad8faK.jpg" 
+                                src="main.png" 
                                 alt="Chocolate Gift Box with Teddy" 
                                 class="object-cover rounded-full p-2 border-4 border-chocolate shadow-lg"
                             >
@@ -360,7 +360,54 @@
             </div>
         </div>
     </section>
-
+<!-- Popular Categories Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 text-chocolate-dark">Our Collections</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Explore our most popular gift categories</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            <!-- Category 1 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg" alt="Chocolates" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Chocolates</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Category 2 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s" alt="Teddy Bears" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Teddy Bears</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Category 3 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s" alt="Valentine's Special" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Valentine's Special</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Filter Categories -->
     <div class="container mx-auto px-4 mb-8" id="categories">
         <div class="flex flex-wrap justify-center gap-2 mb-8">
@@ -380,6 +427,188 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid"></div>
     </div>
 
+        <!-- Featured Products Section -->
+<section class="py-16 bg-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 text-chocolate-dark">Special Offers</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Explore our limited-time gift collections and special bundles at amazing prices!</p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Special Offer 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://www.yamu.lk/wp-content/uploads/2021/02/21_32006_30VA_01ec.jpg" alt="Valentine Bundle" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">SAVE 20%</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Valentine's Day Bundle</h3>
+                    <p class="text-gray-600 mb-4">Heart-shaped chocolate box with teddy bear and perfume</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 line-through">Rs. 5,500</span>
+                            <span class="text-chocolate-dark font-bold text-xl ml-2">Rs. 4,400</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Offer 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1" alt="Premium Gift Set" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">SAVE 15%</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Premium Gift Set</h3>
+                    <p class="text-gray-600 mb-4">Luxury chocolate assortment with custom name key tag</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 line-through">Rs. 3,800</span>
+                            <span class="text-chocolate-dark font-bold text-xl ml-2">Rs. 3,230</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Offer 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg" alt="Dark Chocolate Set" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">NEW</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Dark Chocolate Lover's Set</h3>
+                    <p class="text-gray-600 mb-4">Premium dark chocolate assortment with gift box</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-chocolate-dark font-bold text-xl">Rs. 2,400</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- How It Works Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-6 text-chocolate-dark">How To Order</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Ordering your favorite chocolate gifts is simple and easy!</p>
+        
+        <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">1</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Browse Products</h3>
+                <p class="text-gray-600">Explore our delicious selection of chocolate gifts</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">2</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Click Buy Now</h3>
+                <p class="text-gray-600">Select your favorite item and click the Buy Now button</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">3</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Chat on WhatsApp</h3>
+                <p class="text-gray-600">Complete your order details through WhatsApp</p>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">4</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Receive Your Gift</h3>
+                <p class="text-gray-600">Enjoy fast delivery of your chocolate treats</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Customer Reviews Section -->
+<section class="py-16 bg-gradient-to-b from-white to-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">What Our Customers Say</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">S</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Samantha P.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "The Valentine's gift box was perfect! My boyfriend loved the combination of chocolates and the teddy bear. Delivery was quick and everything arrived in perfect condition."
+                </p>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">R</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Rajith M.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "Ordered a custom chocolate box for my wife's birthday. The communication was excellent and they created exactly what I wanted. Will definitely order again!"
+                </p>
+            </div>
+            
+            <!-- Review 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">N</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Nilmini D.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "The quality of chocolates is amazing! Perfect sweetness and the packaging is so beautiful. My daughter loved the cute teddy that came with it."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- About Section -->
     <section id="about" class="py-16 bg-cream-light">
         <div class="container mx-auto px-4">
@@ -387,7 +616,7 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative">
                     <div class="absolute inset-0 bg-chocolate rounded-2xl opacity-20 transform rotate-3"></div>
-                    <img src="/api/placeholder/500/400" alt="Our Story" class="rounded-2xl relative z-10 shadow-lg">
+                    <img src="story.png" alt="Our Story" class="rounded-2xl relative z-10 shadow-lg">
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold text-chocolate-dark mb-4">Our Sweet Journey</h3>
@@ -415,547 +644,233 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer id="footer" class="bg-chocolate-dark text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold">Yummy Choco House</h3>
-                    <p class="text-gray-300">Making moments sweeter since 2023</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
-                </div>
+<!-- FAQ Section -->
+<section class="py-16 bg-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">Frequently Asked Questions</h2>
+        
+        <div class="max-w-3xl mx-auto">
+            <!-- FAQ Item 1 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">How do I place an order?</h3>
+                <p class="text-gray-700">
+                    Simply browse our products, click the "Buy Now" button on the item you like, and you'll be redirected to WhatsApp with a pre-filled message. Just send the message and we'll guide you through the rest of the ordering process.
+                </p>
             </div>
-            <div class="border-t border-chocolate mt-6 pt-6 text-center text-gray-300">
-                &copy; 2025 Yummy Choco House. All rights reserved.
+            
+            <!-- FAQ Item 2 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">What payment methods do you accept?</h3>
+                <p class="text-gray-700">
+                    We accept bank transfers and cash on delivery within Colombo. Payment details will be provided after confirming your order through WhatsApp.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Do you offer delivery?</h3>
+                <p class="text-gray-700">
+                    Yes, we offer delivery throughout Sri Lanka. Delivery within Colombo is Rs. 300, and outside Colombo varies based on location. Exact delivery charges will be confirmed during order placement.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Can I customize my chocolate box?</h3>
+                <p class="text-gray-700">
+                    Yes! We offer customization options for most of our products. Just let us know your preferences when chatting with us on WhatsApp, and we'll do our best to create exactly what you're looking for.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">How long do deliveries take?</h3>
+                <p class="text-gray-700">
+                    Deliveries within Colombo typically take 1-2 days. Outside Colombo may take 2-3 days depending on the location. For urgent orders, please mention this when placing your order and we'll try our best to accommodate your timeline.
+                </p>
             </div>
         </div>
-    </footer>
-    <!-- <script>
-        // GSAP Animations
-        document.addEventListener('DOMContentLoaded', () => {
-            // Register ScrollTrigger plugin
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Navbar animation
-            gsap.from('nav', {
-                y: -100,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
-            });
-            
-            // Hero content animations
-            const heroTl = gsap.timeline();
-            
-            heroTl.from('.mb-4.inline-block', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            })
-            .from('h1', {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .from('p', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.6')
-            .from('.hero-card', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .from('.flex.flex-wrap', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .from('.teddy-accent', {
-                scale: 0.5,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'elastic.out(1, 0.5)'
-            }, '-=0.6');
-            
-            // Mobile menu functionality
-            const menuToggle = document.getElementById('menu-toggle');
-            const closeMenu = document.getElementById('close-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-            
-            closeMenu.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-            
-            // Heart particles effect on hero image
-            const heartParticlesContainer = document.getElementById('heart-particles');
-            const heroImageContainer = document.getElementById('hero-image-container');
-            
-            function createHeart() {
-                if (!heartParticlesContainer) return;
-                
-                const heart = document.createElement('div');
-                heart.classList.add('heart-particle');
-                heart.innerHTML = '❤';
-                
-                // Random position within the container
-                const xPos = Math.random() * 100;
-                const yPos = Math.random() * 100;
-                
-                heart.style.left = `${xPos}%`;
-                heart.style.top = `${yPos}%`;
-                
-                // Random animation duration
-                const animDuration = 2 + Math.random() * 3;
-                heart.style.animationDuration = `${animDuration}s`;
-                
-                heartParticlesContainer.appendChild(heart);
-                
-                // Remove the heart after animation completes
-                setTimeout(() => {
-                    heart.remove();
-                }, animDuration * 1000);
-            }
-            
-            // Create hearts periodically
-            setInterval(createHeart, 500);
-            
-            // Create initial hearts
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createHeart, i * 300);
-            }
-            
-            // Explore button effect
-            const exploreBtn = document.getElementById('explore-btn');
-            exploreBtn.addEventListener('click', () => {
-                const customerName = document.getElementById('customer-name').value.trim();
-                if (customerName) {
-                    // Add a little animation when clicked
-                    gsap.to(exploreBtn, {
-                        scale: 0.95,
-                        duration: 0.1,
-                        onComplete: () => {
-                            gsap.to(exploreBtn, {
-                                scale: 1,
-                                duration: 0.3,
-                                ease: 'elastic.out(1, 0.3)'
-                            });
-                        }
-                    });
-                    
-                    // Scroll to products section would go here
-                    console.log(`Hello, ${customerName}! Let's explore products.`);
-                    // You can add scroll to products section here
-                }
-            });
-        });
-    </script>
-    <script>
-        // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger);
-
-        // WhatsApp Phone Number
-        const phoneNumber = '94762057685';
-
-        // Product data with unique product IDs
-        const products = [
-            { 
-                id: "CHO001",
-                name: "Milk Chocolate Box", 
-                price: "Rs. 1,500", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s", 
-                category: "chocolate"
-            },
-            { 
-                id: "CHO002",
-                name: "Dark Chocolate Collection", 
-                price: "Rs. 1,800", 
-                image: "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg", 
-                category: "chocolate"
-            },
-            { 
-                id: "VAL001",
-                name: "Valentine's Heart Box", 
-                price: "Rs. 2,500", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s", 
-                category: "valentine"
-            },
-            { 
-                id: "TED001",
-                name: "Teddy Bear - Brown", 
-                price: "Rs. 1,200", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s", 
-                category: "teddy"
-            },
-            { 
-                id: "TED002",
-                name: "Teddy Bear - Pink", 
-                price: "Rs. 1,200", 
-                image: "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg", 
-                category: "teddy"
-            },
-            { 
-                id: "GFT001",
-                name: "Luxury Chocolate Gift Set", 
-                price: "Rs. 3,500", 
-                image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1", 
-                category: "gift"
-            },
-            { 
-                id: "KEY001",
-                name: "Heart-shaped Key Tag", 
-                price: "Rs. 350", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
-                category: "gift"
-            },
-            { 
-                id: "PER001",
-                name: "Valentine's Special Perfume", 
-                price: "Rs. 1,800", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCRYJFG05lqBp5zO8oLAv9a3gbn-Uh67prQ&s", 
-                category: "perfume"
-            },
-            { 
-                id: "TOY001",
-                name: "Small Soft Toy - Rabbit", 
-                price: "Rs. 850", 
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwEe9EzMPYXDVPjU_92AKa4nu5BO3MzT-AkQ&s", 
-                category: "toy"
-            },
-            { 
-                id: "VAL002",
-                name: "Valentine's Couple Teddy Set", 
-                price: "Rs. 2,200", 
-                image: "https://m.media-amazon.com/images/I/51k72sm65hL._AC_UF1000,1000_QL80_.jpg", 
-                category: "valentine"
-            },
-            { 
-                id: "CHO003",
-                name: "Premium Chocolate Assortment", 
-                price: "Rs. 2,800", 
-                image: "https://m.media-amazon.com/images/I/61P9fT4QAWL._SL1200_.jpg", 
-                category: "chocolate"
-            },
-            { 
-                id: "KEY002",
-                name: "Custom Name Key Tag", 
-                price: "Rs. 450", 
-                image: "https://static-01.daraz.lk/p/f940c91611eb51921be90dd9f892b3b9.jpg", 
-                category: "gift"
-            }
-        ];
-
-        // Function to render products
-        function renderProducts(filterCategory = 'all') {
-            const container = document.getElementById('productGrid');
-            container.innerHTML = ''; // Clear previous content
-
-            // Filter products based on category
-            const filteredProducts = filterCategory === 'all' 
-                ? products 
-                : products.filter(product => product.category === filterCategory);
-
-            // Create product cards
-            filteredProducts.forEach((product, index) => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-xl overflow-hidden custom-shadow transition-all duration-300 card-hover product-card';
-                card.setAttribute('data-category', product.category);
-                card.innerHTML = `
-                <div class="relative">
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
-                    <span class="absolute top-3 right-3 bg-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
-                    <span class="absolute top-3 left-3 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">${product.id}</span>
+    </div>
+</section>
+<!-- Contact Us Section -->
+<section class="py-16 bg-cream-light" id="contact">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">Contact Us</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- WhatsApp -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg text-gray-800 mb-1">${product.name}</h3>
-                    <p class="font-bold text-chocolate mb-3">${product.price}</p>
-                    <div class="mb-3">
-                    <select id="qty-${product.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chocolate text-gray-700">
-                        <option value="1">Qty: 1</option>
-                        <option value="2">Qty: 2</option>
-                        <option value="3">Qty: 3</option>
-                        <option value="4">Qty: 4</option>
-                        <option value="5">Qty: 5</option>
-                    </select>
-                    </div>
-                    <button 
-                    class="w-full bg-gradient-to-r from-chocolate-light to-chocolate text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition flex items-center justify-center"
-                    onclick="buyNow('${product.id}', '${product.name}', '${product.price}')"
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">WhatsApp</h3>
+                <p class="text-gray-700 mb-4">Chat with us directly</p>
+                <a href="https://wa.me/94762057685" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i>+94 76 205 7685
+                </a>
+            </div>
+            
+            <!-- Email -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Email</h3>
+                <p class="text-gray-700 mb-4">Send us an email</p>
+                <a href="mailto:info@yummychocohouse.com" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>Email Us
+                </a>
+            </div>
+            
+            <!-- Instagram -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-pink-600 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Instagram</h3>
+                <p class="text-gray-700 mb-4">Follow our latest updates</p>
+                <a href="https://instagram.com/yummychocohouse" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fab fa-instagram mr-2"></i>@yummychocohouse
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-12 bg-chocolate">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-cream-dark rounded-full opacity-20"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-chocolate-light rounded-full opacity-20"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-2xl font-bold text-center mb-2 text-chocolate-dark">Join Our Sweet Family</h2>
+                <p class="text-center text-gray-600 mb-6">Subscribe to receive exclusive offers, discounts and sweet updates!</p>
+                
+                <form class="flex flex-col md:flex-row gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        class="flex-grow px-4 py-3 rounded-lg border-2 border-cream-dark focus:outline-none focus:border-chocolate"
+                        required
                     >
-                    <i class="fab fa-whatsapp mr-2"></i> Buy Now
+                    <button 
+                        type="submit" 
+                        class="chocolate-btn text-white font-medium px-6 py-3 rounded-lg flex items-center justify-center"
+                    >
+                        <i class="fas fa-envelope mr-2"></i>
+                        Subscribe
                     </button>
+                </form>
+                
+                <p class="text-center text-gray-500 text-sm mt-4">
+                    We'll never share your email with anyone else. You can unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call to Action Section -->
+<section class="py-16 bg-chocolate-dark text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Sweeten Someone's Day?</h2>
+        <p class="mb-8 text-cream-light max-w-2xl mx-auto">
+            Order now and surprise your loved ones with our delicious chocolate gifts and adorable teddy bears!
+        </p>
+        <a href="#shop" class="bg-white text-chocolate-dark hover:bg-cream-light transition-colors px-8 py-4 rounded-full font-bold text-lg inline-flex items-center">
+            <i class="fas fa-gift mr-2"></i>
+            Browse Our Collection
+        </a>
+    </div>
+</section>
+    <!-- Footer -->
+<footer id="footer" class="bg-chocolate-dark text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <!-- About Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Yummy Choco House</h3>
+                <p class="text-gray-300 mb-4">
+                    Bringing sweetness to your special moments since 2023. We specialize in chocolate gifts, teddy bears, and custom gift sets.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
                 </div>
-                `;
-                container.appendChild(card);
-
-                // Animate cards using GSAP
-                gsap.to(card, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    ease: "power2.out"
-                });
-            });
-
-            // If no products match the filter
-            if (filteredProducts.length === 0) {
-                const emptyMessage = document.createElement('div');
-                emptyMessage.className = 'col-span-full text-center py-8 text-gray-600';
-                emptyMessage.innerHTML = `
-                    <i class="fas fa-search text-4xl mb-3 text-chocolate-light"></i>
-                    <p class="text-lg">No products found in this category.</p>
-                `;
-                container.appendChild(emptyMessage);
-            }
-        }
-
-        // Function to handle "Buy Now" click
-        function buyNow(productId, productName, productPrice) {
-            // Get selected quantity
-            const quantitySelect = document.getElementById(`qty-${productId}`);
-            const quantity = quantitySelect.value;
+            </div>
             
-            // Get user name (if provided)
-            const userName = document.getElementById('username').value.trim() || 'Customer';
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#shop" class="text-gray-300 hover:text-white transition-colors">Shop</a></li>
+                    <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
             
-            // Create WhatsApp message
-            // const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:\n\n🎁 *Product*:${productName}* (${productId})\n🔢 *Quantity*: ${quantity}\n💰 *Price*:  ${productPrice}\n\nPlease let me know the delivery details. Thank you!`;
+            <!-- Categories -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Chocolates</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Teddy Bears</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Valentine's Special</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Gifts</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Perfumes</a></li>
+                </ul>
+            </div>
             
-            const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:
-
-🎁 *Product*: *${productName}* (${productId})  
-🔢 *Quantity*: *${quantity}*  
-💰 *Price*: *${productPrice}*
-
-Please let me know the payment details and delivery options. Thank you!`;
-
-
-            // Encode the message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Open WhatsApp with the message
-            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-        }
-
-        // Filter products based on category
-        document.querySelectorAll('.category-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Update active button styles
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active', 'bg-chocolate', 'text-white');
-                    btn.classList.add('bg-white', 'text-gray-700');
-                });
-                this.classList.add('active', 'bg-chocolate', 'text-white');
-                this.classList.remove('bg-white', 'text-gray-700');
-                
-                // Filter products
-                const category = this.getAttribute('data-category');
-                renderProducts(category);
-            });
-        });
-
-        // Mobile menu functionality
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.add('active');
-        });
-
-        document.getElementById('close-menu').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.remove('active');
-        });
-
-        // Scroll animations
-        function initScrollAnimations() {
-            const scrollElements = document.querySelectorAll('[data-scroll]');
-            
-            const elementInView = (el, percentageScroll = 100) => {
-                const elementTop = el.getBoundingClientRect().top;
-                const elementHeight = el.offsetHeight;
-                const windowHeight = window.innerHeight;
-                
-                return (
-                    elementTop <= windowHeight - (elementHeight * (percentageScroll/100))
-                );
-            };
-            
-            const displayScrollElement = (element) => {
-                element.classList.add('visible');
-            };
-            
-            const hideScrollElement = (element) => {
-                element.classList.remove('visible');
-            };
-            
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el, 80)) {
-                        displayScrollElement(el);
-                    } else {
-                        hideScrollElement(el);
-                    }
-                });
-            };
-            
-            // Initialize
-            window.addEventListener('scroll', handleScrollAnimation);
-            handleScrollAnimation();
-        }
-
-        // Hero image heart animation
-        function createHeartParticles() {
-            const heartContainer = document.getElementById('heart-particles');
-            const createHeart = () => {
-                const heart = document.createElement('div');
-                heart.className = 'heart-particle';
-                heart.innerHTML = '<i class="fas fa-heart"></i>';
-                
-                // Random position within container
-                const leftPos = Math.random() * 100;
-                heart.style.left = `${leftPos}%`;
-                
-                // Random animation delay
-                heart.style.animationDelay = `${Math.random() * 2}s`;
-                
-                heartContainer.appendChild(heart);
-                
-                // Remove heart after animation
-                setTimeout(() => {
-                    heart.remove();
-                }, 3000);
-            };
-            
-            // Create hearts at intervals
-            setInterval(createHeart, 500);
-        }
-
-        // Explore button functionality
-        document.getElementById('explore-btn').addEventListener('click', function() {
-            const userName = document.getElementById('username').value.trim();
-            if (userName) {
-                // Save name for later use
-                localStorage.setItem('userName', userName);
-                
-                // Scroll to products section
-                document.getElementById('shop').scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Show welcome message
-                const toast = document.createElement('div');
-                toast.className = 'fixed bottom-4 right-4 bg-chocolate text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center';
-                toast.innerHTML = `
-                    <i class="fas fa-heart mr-2"></i>
-                    <span>Welcome ${userName}! Browse our sweet collection ❤️</span>
-                `;
-                document.body.appendChild(toast);
-                
-                // Remove toast after 5 seconds
-                setTimeout(() => {
-                    toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-                    setTimeout(() => toast.remove(), 500);
-                }, 5000);
-            } else {
-                // Alert if name is empty
-                alert('Please enter your name to continue');
-                document.getElementById('username').focus();
-            }
-        });
-
-        // Initialize the page
-        window.addEventListener('DOMContentLoaded', function() {
-            // Render all products initially
-            renderProducts();
-            
-            // Initialize scroll animations
-            initScrollAnimations();
-            
-            // Initialize heart particles
-            createHeartParticles();
-            
-            // Check if returning user
-            const savedName = localStorage.getItem('userName');
-            if (savedName) {
-                document.getElementById('username').value = savedName;
-            }
-            
-            // GSAP animations
-            gsap.from('#hero h1', {
-                opacity: 0,
-                y: 30,
-                duration: 1,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('#hero p', {
-                opacity: 0,
-                y: 20,
-                duration: 1,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.hero-card', {
-                opacity: 0,
-                y: 20,
-                duration: 1,
-                delay: 0.5,
-                ease: 'power3.out'
-            });
-            
-            // Hero image animation
-            gsap.from('#hero-image-container', {
-                opacity: 0,
-                scale: 0.8,
-                duration: 1,
-                ease: 'back.out(1.7)'
-            });
-            
-            // About section animations
-            ScrollTrigger.batch('#about .grid > div', {
-                onEnter: batch => gsap.to(batch, {
-                    opacity: 1,
-                    y: 0,
-                    stagger: 0.15,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                }),
-                start: 'top 80%'
-            });
-            
-            // Smooth scroll for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        document.getElementById('mobile-menu').classList.remove('active');
-                    }
-                });
-            });
-        });
-    </script> -->
-
-
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Contact Info</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        <span>+94 76 205 7685</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>info@yummychocohouse.com</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Colombo, Sri Lanka</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-clock mr-2"></i>
+                        <span>Open: 9AM - 6PM (Mon-Sat)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-chocolate pt-6 text-center text-gray-300">
+            <p>&copy; 2025 Yummy Choco House. All rights reserved.</p>
+            <div class="mt-2 text-sm">
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors">Privacy Policy</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-chocolate text-white shadow-lg flex items-center justify-center transform transition-all duration-300 opacity-0 translate-y-10 hover:bg-chocolate-light">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <script>
         // Initialize GSAP
 document.addEventListener('DOMContentLoaded', () => {
@@ -1476,6 +1391,46 @@ Please let me know the payment details and delivery options. Thank you!`;
     // Run everything on page load
     initializeAll();
 });
+
+  // JavaScript for scroll to top button
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    // Show button when scrolled down
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) { // Show after 300px of scrolling
+            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+            scrollToTopBtn.classList.add('opacity-0', 'translate-y-10');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add mobile menu functionality (this was commented out in your original code)
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    
+    if (menuToggle && mobileMenu && closeMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+    }
     </script>
+
+
+
+
 </body>
 </html>
