@@ -58,6 +58,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         body {
             font-family: 'Nunito', sans-serif;
             background-color: #FFF8E1;
@@ -240,7 +242,425 @@
             opacity: 1;
             transform: translateY(0);
         }
-    </style>
+
+            
+            :root {
+                --primary: #8B5642;
+                --primary-dark: #6D4534;
+                --primary-light: #C38E7D;
+                --secondary: #F9EFE5;
+                --secondary-dark: #E5D8CC;
+                --accent: #D45E5E;
+                --text-dark: #2D2D2D;
+                --text-light: #6C6C6C;
+            }
+          
+            /* Custom Classes */
+            .bg-primary {
+                background-color: var(--primary);
+            }
+            
+            .bg-primary-light {
+                background-color: var(--primary-light);
+            }
+            
+            .bg-secondary {
+                background-color: var(--secondary);
+            } 
+            
+            .text-primary {
+                color: var(--primary);
+            }
+            
+            .text-primary-dark {
+                color: var(--primary-dark);
+            }
+            
+            .text-accent {
+                color: var(--accent);
+            }
+            
+            .border-primary {
+                border-color: var(--primary);
+            }            
+            /* Category Pills */
+            .category-container {
+                position: sticky;
+                top: 0;
+                z-index: 40;
+                background-color: var(--secondary);
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+            
+            .category-btn {
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                font-weight: 500;
+            }
+            
+            .category-btn.active {
+                background-color: var(--primary);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            .category-btn:hover:not(.active) {
+                background-color: var(--secondary-dark);
+                transform: translateY(-2px);
+            }
+            
+            /* Product Cards */
+            .product-card {
+                height: 340px; /* Fix card height */
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 10px 25px rgba(139, 69, 19, 0.1);
+
+            }
+            
+            .product-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .product-card .product-image-container {
+                height: 230px; 
+                flex-shrink: 0; 
+                overflow: hidden; 
+            }
+
+            
+            .product-card .product-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.7s ease;
+            }
+            
+            .product-card:hover .product-image {
+                transform: scale(1.1);
+            }
+            
+            .product-card .quick-view {
+                position: absolute;
+                bottom: -50px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 0.5rem;
+                text-align: center;
+                transition: bottom 0.3s ease;
+            }
+            
+            .product-card:hover .quick-view {
+                bottom: 0;
+            }
+
+            .product-card .p-4 {
+                flex: 1; 
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; 
+                overflow: hidden;
+            }
+
+            .product-card .p-4 h3 {
+                display: -webkit-box;
+                /* -webkit-line-clamp: 2;  */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-height: 3em; 
+            }
+            .product-card .product-badge {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background-color: var(--accent);
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            
+            /* Popup Modal */
+            .popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 50;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
+                padding: 15px;
+                backdrop-filter: blur(5px);
+            }
+            
+            .popup-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .popup-content {
+                background-color: white;
+                border-radius: 16px;
+                width: 95%;
+                max-width: 900px;
+                max-height: 90vh;
+                overflow: auto;
+                position: relative;
+                transform: scale(0.9) translateY(30px);
+                opacity: 0;
+                transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+            
+            .popup-overlay.active .popup-content {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            
+            .close-popup {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                z-index: 2;
+                font-size: 24px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .close-popup:hover {
+                transform: rotate(90deg);
+                background-color: var(--accent);
+                color: white;
+            }
+            
+            /* Thumbnails */
+            .thumbnail {
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .thumbnail:hover {
+                transform: translateY(-3px);
+            }
+            
+            .thumbnail.active {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 2px var(--primary-light);
+            }
+            
+            /* Custom Quantity Selector */
+            .quantity-selector {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .quantity-control {
+                display: flex;
+                align-items: center;
+                border: 2px solid var(--primary-light);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+                background-color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: bold;
+                color: var(--primary);
+                transition: all 0.2s ease;
+            }
+            
+            .quantity-btn:hover {
+                background-color: var(--primary-light);
+                color: white;
+            }
+            
+            .quantity-input {
+                width: 50px;
+                text-align: center;
+                border: none;
+                font-size: 16px;
+                padding: 8px 4px;
+                background: transparent;
+                color: var(--text-dark);
+            }
+            
+            /* Order Button */
+            .order-btn {
+                background-image: linear-gradient(135deg, #25D366, #128C7E);
+                color: white;
+                border-radius: 8px;
+                padding: 0.75rem 1.5rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            }
+            
+            .order-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            }
+            
+            /* Scroll Animations */
+            .fade-up {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            
+            /* Loader */
+            .loader {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                background-color: var(--secondary);
+                z-index: 999;
+                transition: opacity 0.5s ease, visibility 0.5s ease;
+            }
+            
+            .loader.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .loader .spinner {
+                width: 60px;
+                height: 60px;
+                border: 5px solid var(--primary-light);
+                border-radius: 50%;
+                border-top-color: var(--primary);
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            /* Toast Notification */
+            .toast {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: var(--primary);
+                color: white;
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                z-index: 100;
+                transform: translateY(100px);
+                opacity: 0;
+                transition: transform 0.4s ease, opacity 0.4s ease;
+            }
+            
+            .toast.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            /* Scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: var(--secondary);
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: var(--primary-light);
+                border-radius: 10px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--primary);
+            }
+            
+            /* Responsive */
+            @media (max-width: 640px) {
+                .category-container {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                    padding-bottom: 10px;
+                }
+                
+                .category-container::-webkit-scrollbar {
+                    display: none;
+                }
+                
+                .category-inner {
+                    display: inline-flex;
+                    flex-wrap: nowrap;
+                    padding: 0 10px;
+                }
+                
+                .category-btn {
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+                
+                .main-image-container {
+                    height: 250px !important;
+                }
+                
+                .popup-content {
+                    padding: 1rem !important;
+                }
+                
+                .product-details {
+                    padding: 1rem !important;
+                }
+            }
+</style>
+
 </head>
 <body class="min-h-screen">
     <!-- Navigation Bar -->
@@ -434,24 +854,99 @@
         </div>
     </div>
 </section>
+
     <!-- Filter Categories -->
-    <div class="container mx-auto px-4 mb-8" id="categories">
-        <div class="flex flex-wrap justify-center gap-2 mb-8">
-            <button class="category-btn active bg-chocolate text-white px-4 py-2 rounded-full hover:bg-chocolate-light transition" data-category="all">All Items</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="chocolate">Chocolates</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="teddy">Teddy Bears</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="valentine">Valentine's Special</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="gift">Gifts</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="toy">Toys</button>
-            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="perfume">Perfumes</button>
+    <div class="category-container" id="categories">
+        <div class="container mx-auto px-4">
+            <div class="category-inner flex flex-wrap justify-center gap-3">
+                <button class="category-btn active bg-primary text-white px-5 py-2 rounded-full transition" data-category="all">All Items</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="chocolate">Chocolates</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="teddy">Teddy Bears</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="valentine">Valentine's Special</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="gift">Gifts</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="toy">Toys</button>
+                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="perfume">Perfumes</button>
+            </div>
         </div>
     </div>
 
     <!-- Product Grid -->
-    <div id="shop" class="container mx-auto px-4 mb-16 pt-4">
+    <div id="shop" class="container mx-auto px-4 py-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-primary-dark fade-up">Our Premium Collection</h2>
+        <p class="text-center text-gray-600 mb-10 fade-up">Discover our exquisite range of gifts and treats for your loved ones</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
+            <!-- Products will be dynamically generated here -->
+        </div>
+    </div>
+    
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="productPopup">
+        <div class="popup-content">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <div class="flex flex-col md:flex-row">
+                <!-- Main Image Container -->
+                <div class="w-full md:w-1/2">
+                    <div class="main-image-container h-96 bg-gray-50 flex items-center justify-center overflow-hidden">
+                        <img src="" id="popupMainImage" class="max-h-full max-w-full object-contain" alt="Product Image">
+                    </div>
+                    
+                    <!-- Thumbnails -->
+                    <div class="thumbnails-container flex gap-3 justify-center mt-4 px-4 pb-4" id="thumbnailsContainer">
+                        <!-- Thumbnails will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Product Details -->
+                <div class="w-full md:w-1/2 product-details p-6 md:p-8">
+                    <span class="inline-block bg-primary-light text-white text-xs font-semibold px-3 py-1 rounded-full mb-4" id="popupProductCategory">Category</span>
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary-dark mb-2" id="popupProductName"></h3>
+                    <div class="flex items-center gap-2 mb-4">
+                        <p class="text-xl font-semibold text-primary" id="popupProductPrice"></p>
+                        <div class="w-px h-5 bg-gray-300"></div>
+                        <p class="text-gray-600" id="popupProductId"></p>
+                    </div>
+                    
+                    <div class="my-6 border-t border-b border-gray-100 py-6">
+                        <p class="text-gray-700 leading-relaxed" id="popupProductDescription"></p>
+                    </div>
+                    
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector">
+                        <label class="text-gray-700 font-medium">Quantity:</label>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrement">-</button>
+                            <input type="number" id="quantityInput" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn increment">+</button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg font-semibold text-primary-dark mb-6" id="popupTotalPrice">Total: Rs. 0</p>
+                    
+                    <a href="#" id="whatsappButton" class="order-btn w-full sm:w-auto flex items-center justify-center gap-2 no-underline" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        Order via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toastNotification">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span id="toastMessage">Added to cart!</span>
+    </div>
+
+    <!-- Product Grid -->
+    <!-- <div id="shop" class="container mx-auto px-4 mb-16 pt-4">
         <h2 class="text-3xl font-bold text-center mb-8 text-chocolate-dark">Our Products</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid"></div>
-    </div>
+    </div> -->
 
         <!-- Featured Products Section -->
 <section class="py-16 bg-cream-light">
@@ -894,238 +1389,496 @@
         </div>
     </div>
     </footer>
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-chocolate text-white shadow-lg flex items-center justify-center transform transition-all duration-300 opacity-0 translate-y-10 hover:bg-chocolate-light">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    <script>
-        // Initialize GSAP
-document.addEventListener('DOMContentLoaded', () => {
-    // Register ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
     
-    // WhatsApp Phone Number
-    const phoneNumber = '94762057685';
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-chocolate text-white shadow-lg flex items-center justify-center transform transition-all duration-300 opacity-0 translate-y-10 hover:bg-chocolate-light">
+    <i class="fas fa-arrow-up"></i>
+</button>
+    <script>
 
-    // Product data with unique product IDs
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // Scroll to Top Button Functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+    // Show/hide button on scroll
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+            scrollToTopBtn.classList.add('opacity-0', 'translate-y-10');
+        }
+    });
+    
+    // Smooth scroll to top
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+});
+    // Product Data
     const products = [
         { 
             id: "CHO001",
             name: "Milk Chocolate Box", 
             price: "Rs. 1,500", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s", 
-            category: "chocolate"
+            category: "chocolate",
+            description: "A delightful assortment of premium milk chocolates perfect for any occasion.",
+            additionalImages: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsD8mkWR_qsYWQKkThWJfIb0YUfxjz5nqRMA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvftaBmzKLt5UAu7N4tKYRHat-Q-4n5mK1iw&s"
+            ],
+            badge: "Popular"
         },
         { 
             id: "CHO002",
             name: "Dark Chocolate Collection", 
             price: "Rs. 1,800", 
             image: "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg", 
-            category: "chocolate"
+            category: "chocolate",
+            description: "Rich dark chocolate selections with varying cacao percentages for the true chocolate connoisseur.",
+            additionalImages: [
+                "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWvS4JMPrBPCQo-8EFmFf32XBhjsLLowRrpg&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TWxrz52uTPd2U9aSRkTeYh8PX_HxCNMYSA&s"
+            ],
+            badge: "Best Seller"
         },
         { 
             id: "VAL001",
             name: "Valentine's Heart Box", 
             price: "Rs. 2,500", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s", 
-            category: "valentine"
+            category: "valentine",
+            description: "Express your love with this heart-shaped box filled with premium chocolates and treats.",
+            additionalImages: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzT4-_Y-JRD7mslPPMpBFcX8VjK9B3JYL8CA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV6WMG-fxIUvAb7H7NSbFzUeLtyQHSiF0A8g&s"
+            ],
+            badge: "Limited"
         },
         { 
             id: "TED001",
             name: "Teddy Bear - Brown", 
             price: "Rs. 1,200", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s", 
-            category: "teddy"
+            category: "teddy",
+            description: "Soft and cuddly brown teddy bear, perfect for gifting to loved ones of all ages.",
+            additionalImages: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaAPPBBDYbTUmRIFSfNJ_mqof9whPeQ6-3Ww&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTXk_13qZGDgps9WTJK3oHHf6TdAvq9P6aw&s"
+            ]
         },
         { 
             id: "TED002",
             name: "Teddy Bear - Pink", 
             price: "Rs. 1,200", 
             image: "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg", 
-            category: "teddy"
+            category: "teddy",
+            description: "Adorable pink teddy bear with a heart embroidery, ideal for Valentine's Day or birthdays.",
+            additionalImages: [
+                "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyO6tcSawjLfMDan4suVz40xBPdVH-B-587w&s",
+                "https://wallmantra.com/wp-content/uploads/frantic-trading-pvt-ltd-soft-toys-bow-tie-soft-premium-blue-big-teddy-bear-32308222460070.jpg"
+            ],
+            badge: "Popular"
         },
         { 
             id: "GFT001",
             name: "Luxury Chocolate Gift Set", 
             price: "Rs. 3,500", 
             image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1", 
-            category: "gift"
+            category: "gift",
+            description: "Premium gift set featuring an assortment of luxury chocolates in elegant packaging.",
+            additionalImages: [
+                "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDGFLtXYaUP-jPjCpmf1n7DVkMZ_7jX5UYlA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVoZoO9nORZ2iA9jkLEvR2lHyK7w3TLlSUxg&s"
+            ],
+            badge: "Premium"
         },
         { 
             id: "KEY001",
             name: "Heart-shaped Key Tag", 
             price: "Rs. 350", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
-            category: "gift"
-        },
-        { 
-            id: "PER001",
-            name: "Valentine's Special Perfume", 
-            price: "Rs. 1,800", 
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCRYJFG05lqBp5zO8oLAv9a3gbn-Uh67prQ&s", 
-            category: "perfume"
+            category: "gift",
+            description: "Elegant heart-shaped key tag made from high-quality material, perfect for a small token of affection.",
+            additionalImages: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQIULQ3vz5mM2wJxX4flBdF6wlWTiR8J5NfA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXfQt1_ucaJ_8FMx46TfzBHgrOzcbGr_6Mvw&s"
+            ]
         },
         { 
             id: "TOY001",
-            name: "Small Soft Toy - Rabbit", 
-            price: "Rs. 850", 
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwEe9EzMPYXDVPjU_92AKa4nu5BO3MzT-AkQ&s", 
-            category: "toy"
+            name: "Plush Unicorn", 
+            price: "Rs. 950", 
+            image: "https://img.drz.lazcdn.com/static/lk/p/918a9a912f73f73838579e09bea215ab.jpg_720x720q80.jpg", 
+            category: "toy",
+            description: "Soft and cuddly plush unicorn with rainbow mane and tail, perfect for children of all ages.",
+            additionalImages: [
+                "https://img.drz.lazcdn.com/static/lk/p/918a9a912f73f73838579e09bea215ab.jpg_720x720q80.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9afr3J5g6mONJ3c0fb_uvb_-c3Adw0bz4hw&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIxkKAVW4XP5VZa2eFYelCzuqiWg1DET2Daw&s"
+            ],
+            badge: "New"
+        },
+        { 
+            id: "PER001",
+            name: "Floral Perfume", 
+            price: "Rs. 2,800", 
+            image: "https://images-cdn.ubuy.ae/638e75ab0445187f6b1e8561-she-38ml-romantic-women-s-perfume.jpg", 
+            category: "perfume",
+            description: "Elegant floral perfume with delicate notes of jasmine, rose, and vanilla. Long-lasting fragrance.",
+            additionalImages: [
+                "https://images-cdn.ubuy.ae/638e75ab0445187f6b1e8561-she-38ml-romantic-women-s-perfume.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXhfhZmmTGqNzIIl3djBa3vRlwhFdK6Mg9w&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5yQzw0JuYJMiVLaOrG-GFuPmHqnQj8gG81A&s"
+            ],
+            badge: "Exclusive"
+        },
+        { 
+            id: "PER002",
+            name: "Men's Cologne", 
+            price: "Rs. 3,200", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS127BIk_7TrXjPwmcp_a9zO2SCuKA4uefcxQ&s", 
+            category: "perfume",
+            description: "Sophisticated men's cologne with woody and citrus notes. Perfect for daily wear or special occasions.",
+            additionalImages: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS127BIk_7TrXjPwmcp_a9zO2SCuKA4uefcxQ&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnIW2NBXnGALx24QoUJ8d5jTuLrUZQ6CWAUw&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuGfPFRTLuoJ--r92pS_ftmhUcQJ3FcaU1A&s"
+            ]
         },
         { 
             id: "VAL002",
-            name: "Valentine's Couple Teddy Set", 
-            price: "Rs. 2,200", 
-            image: "https://m.media-amazon.com/images/I/51k72sm65hL._AC_UF1000,1000_QL80_.jpg", 
-            category: "valentine"
+            name: "Love Letter Chocolate Box", 
+            price: "Rs. 1,950", 
+            image: "https://rochiechocolates.com/cdn/shop/files/LoveYouBoxWood2.png?v=1717608018", 
+            category: "valentine",
+            description: "Express your feelings with this love letter-shaped chocolate box containing assorted pralines and truffles.",
+            additionalImages: [
+                "https://rochiechocolates.com/cdn/shop/files/LoveYouBoxWood2.png?v=1717608018",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZGTCxrk4BVCJzIQKTtWWMfjkX0XRMq4SYyA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3tpdQkMLXN7MsS3OgFnVw-2fgFHGXMEYXZQ&s"
+            ],
+            badge: "Valentine's Day"
         },
         { 
-            id: "CHO003",
-            name: "Premium Chocolate Assortment", 
-            price: "Rs. 2,800", 
-            image: "https://m.media-amazon.com/images/I/61P9fT4QAWL._SL1200_.jpg", 
-            category: "chocolate"
-        },
-        { 
-            id: "KEY002",
-            name: "Custom Name Key Tag", 
-            price: "Rs. 450", 
-            image: "https://static-01.daraz.lk/p/f940c91611eb51921be90dd9f892b3b9.jpg", 
-            category: "gift"
+            id: "GFT002",
+            name: "Birthday Gift Hamper", 
+            price: "Rs. 4,500", 
+            image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3449/6256/happy-birthday-gift-basket-new-bars__96314.1694439367.jpg?c=1", 
+            category: "gift",
+            description: "Complete birthday gift hamper with chocolates, teddy bear, greeting card, and more.",
+            additionalImages: [
+                "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3449/6256/happy-birthday-gift-basket-new-bars__96314.1694439367.jpg?c=1",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi3vkhGu_B81sQvqcEU63j0Gf-NUJrWWDBIA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS67N3_FPJhkB0F4ahuxwkBgNRJfZ8kDM5GYA&s"
+            ],
+            badge: "Premium"
         }
     ];
 
-    // Function to render products
-    function renderProducts(filterCategory = 'all') {
-        const container = document.getElementById('productGrid');
-        if (!container) {
-            console.error('Product grid container not found');
-            return;
-        }
-        
-        container.innerHTML = ''; // Clear previous content
+    // Page Loader Handling
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('pageLoader').classList.add('hidden');
+        }, 1000);
+    });
 
-        // Filter products based on category
-        const filteredProducts = filterCategory === 'all' 
-            ? products 
-            : products.filter(product => product.category === filterCategory);
+    // Initialize Page
+    populateProducts(products);
+    initializeAnimations();
+    attachEventListeners();
 
-        // Create product cards
-        filteredProducts.forEach((product, index) => {
-            const card = document.createElement('div');
-            card.className = 'bg-white rounded-xl overflow-hidden custom-shadow transition-all duration-300 card-hover product-card opacity-0 transform translate-y-8';
-            card.setAttribute('data-category', product.category);
-            card.innerHTML = `
-            <div class="relative">
-                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
-                <span class="absolute top-3 right-3 bg-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
-                <span class="absolute top-3 left-3 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">${product.id}</span>
-            </div>
-            <div class="p-4">
-                <h3 class="font-semibold text-lg text-gray-800 mb-1">${product.name}</h3>
-                <p class="font-bold text-chocolate mb-3">${product.price}</p>
-                <div class="mb-3">
-                <select id="qty-${product.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chocolate text-gray-700">
-                    <option value="1">Qty: 1</option>
-                    <option value="2">Qty: 2</option>
-                    <option value="3">Qty: 3</option>
-                    <option value="4">Qty: 4</option>
-                    <option value="5">Qty: 5</option>
-                </select>
+    // Functions
+    function populateProducts(productsArray) {
+        const productGrid = document.getElementById('productGrid');
+        productGrid.innerHTML = '';
+
+        productsArray.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card rounded-xl overflow-hidden fade-up';
+            productCard.dataset.category = product.category;
+            productCard.dataset.id = product.id;
+
+            let badgeHtml = '';
+            if (product.badge) {
+                badgeHtml = `<div class="product-badge">${product.badge}</div>`;
+            }
+
+            productCard.innerHTML = `
+                <div class="product-image-container">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="quick-view">Quick View</div>
+                    ${badgeHtml}
                 </div>
-                <button 
-                class="w-full bg-gradient-to-r from-chocolate-light to-chocolate text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition flex items-center justify-center buy-now-btn"
-                data-product-id="${product.id}"
-                data-product-name="${product.name}"
-                data-product-price="${product.price}"
-                >
-                <i class="fab fa-whatsapp mr-2"></i> Buy Now
-                </button>
-            </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-primary-dark">${product.name}</h3>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="font-medium text-primary"><b>${product.price}</b></p>
+                        <p class="text-sm text-gray-500">${product.id}</p>
+                    </div>
+                </div>
             `;
-            container.appendChild(card);
 
-            // Animate cards using GSAP with a slight delay
-            gsap.to(card, {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: "power2.out"
-            });
-        });
+            productGrid.appendChild(productCard);
 
-        // If no products match the filter
-        if (filteredProducts.length === 0) {
-            const emptyMessage = document.createElement('div');
-            emptyMessage.className = 'col-span-full text-center py-8 text-gray-600';
-            emptyMessage.innerHTML = `
-                <i class="fas fa-search text-4xl mb-3 text-chocolate-light"></i>
-                <p class="text-lg">No products found in this category.</p>
-            `;
-            container.appendChild(emptyMessage);
-        }
-
-        // Add event listeners to Buy Now buttons
-        document.querySelectorAll('.buy-now-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product-id');
-                const productName = this.getAttribute('data-product-name');
-                const productPrice = this.getAttribute('data-product-price');
-                buyNow(productId, productName, productPrice);
+            // Add click event to product card
+            productCard.addEventListener('click', () => {
+                openProductPopup(product);
             });
         });
     }
 
-    // Function to handle "Buy Now" click
-    window.buyNow = function(productId, productName, productPrice) {
-        // Get selected quantity
-        const quantitySelect = document.getElementById(`qty-${productId}`);
-        if (!quantitySelect) {
-            console.error(`Quantity select for ${productId} not found`);
-            return;
+    function initializeAnimations() {
+        // Animate fade-up elements
+        gsap.utils.toArray('.fade-up').forEach(element => {
+            gsap.fromTo(element, 
+                { y: 30, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.8, 
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+    }
+
+    function filterProducts(category) {
+        const filteredProducts = category === 'all' 
+            ? products 
+            : products.filter(product => product.category === category);
+        
+        populateProducts(filteredProducts);
+        initializeAnimations();
+    }
+
+    function openProductPopup(product) {
+        const popup = document.getElementById('productPopup');
+        const popupName = document.getElementById('popupProductName');
+        const popupPrice = document.getElementById('popupProductPrice');
+        const popupId = document.getElementById('popupProductId');
+        const popupDescription = document.getElementById('popupProductDescription');
+        const popupCategory = document.getElementById('popupProductCategory');
+        const popupMainImage = document.getElementById('popupMainImage');
+        const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+        const totalPrice = document.getElementById('popupTotalPrice');
+        const quantityInput = document.getElementById('quantityInput');
+        const whatsappButton = document.getElementById('whatsappButton');
+
+        // Set product details
+        popupName.textContent = product.name;
+        popupPrice.textContent = product.price;
+        popupId.textContent = `ID: ${product.id}`;
+        popupDescription.textContent = product.description;
+        popupCategory.textContent = product.category.charAt(0).toUpperCase() + product.category.slice(1);
+        popupMainImage.src = product.image;
+        
+        // Reset quantity input
+        quantityInput.value = 1;
+        
+        // Set initial total price
+        const priceValue = parsePriceString(product.price);
+        totalPrice.textContent = `Total: ${product.price}`;
+
+        // Generate thumbnails
+        thumbnailsContainer.innerHTML = '';
+        product.additionalImages.forEach((img, index) => {
+            const thumbnail = document.createElement('div');
+            thumbnail.className = `thumbnail h-16 w-16 rounded-lg overflow-hidden ${index === 0 ? 'active' : ''}`;
+            thumbnail.innerHTML = `<img src="${img}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">`;
+            thumbnailsContainer.appendChild(thumbnail);
+
+            // Add click event to thumbnail
+            thumbnail.addEventListener('click', () => {
+                document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+                thumbnail.classList.add('active');
+                popupMainImage.src = img;
+            });
+        });
+
+        // Set WhatsApp button href
+        whatsappButton.href = generateWhatsAppLink(product, 1);
+
+        // Show popup
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductPopup() {
+        const popup = document.getElementById('productPopup');
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function parsePriceString(priceString) {
+    // First remove "Rs. " from the string
+    let numStr = priceString.replace("Rs. ", "");
+    // Then remove all commas
+    numStr = numStr.replace(/,/g, "");
+    // Finally convert to a number
+    return parseFloat(numStr);
+  }
+
+  function formatPrice(price) {
+      return `Rs. ${price.toLocaleString('en-IN')}`;
+  }
+
+  function updateTotalPrice() {
+    const popupPrice = document.getElementById('popupProductPrice');
+    const quantityInput = document.getElementById('quantityInput');
+    const totalPrice = document.getElementById('popupTotalPrice');
+    
+    // Get current price and quantity
+    const basePrice = parsePriceString(popupPrice.textContent);
+    const quantity = parseInt(quantityInput.value) || 1;
+    
+    // Calculate total
+    const total = basePrice * quantity;
+    
+    // Update total price display
+    totalPrice.textContent = `Total: ${formatPrice(total)}`;
+    
+    // Update WhatsApp link - find current product
+    const productId = document.getElementById('popupProductId').textContent.replace('ID: ', '');
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        const whatsappButton = document.getElementById('whatsappButton');
+        whatsappButton.href = generateWhatsAppLink(product, quantity);
+    }
+}
+// Explore button click handler (පවතින කේතය යාවත්කාලීන කරන්න)
+document.getElementById('explore-btn').addEventListener('click', function() {
+    const usernameInput = document.getElementById('username');
+    const userName = usernameInput.value.trim();
+    
+    if (userName) {
+        // Save name to localStorage
+        localStorage.setItem('userName', userName);
+        
+        // Scroll to products section
+        const shopSection = document.getElementById('shop');
+        if (shopSection) {
+            shopSection.scrollIntoView({ behavior: 'smooth' });
         }
-        const quantity = quantitySelect.value;
         
-        // Get user name (if provided)
-        const userNameInput = document.getElementById('username');
-        const userName = userNameInput && userNameInput.value.trim() ? userNameInput.value.trim() : 'Customer';
-        
-        // Create WhatsApp message
-        const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:
+        // Show welcome message
+        showToast(`Welcome ${userName}! Let's explore our sweet collection ❤️`);
+    } else {
+        alert('Please enter your name to continue');
+        usernameInput.focus();
+    }
+});
 
-🎁 *Product*: *${productName}* (${productId})  
-🔢 *Quantity*: *${quantity}*  
-💰 *Price*: *${productPrice}*
+// WhatsApp message generation function (යාවත්කාලීන කරන ලදී)
+function generateWhatsAppLink(product, quantity) {
+    const phone = '94762057685';
+    const userName = localStorage.getItem('userName') || 'Valued Customer';
+    const total = parsePriceString(product.price) * quantity;
 
-Please let me know the payment details and delivery options. Thank you!`;
+    const message = `Hello Yummy Choco House! 👋\n\n` +
+                   `I'm *${userName}* and I would like to order:\n\n` +
+                   `🎁 *Product*: ${product.name} (${product.id})\n` +
+                   `🔢 *Quantity*: ${quantity}\n` +
+                   `💰 *Total*: Rs. ${total.toLocaleString()}\n\n` +
+                   `Please advise payment and delivery details. Thank you!`;
 
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Open WhatsApp with the message
-        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-    };
+    return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
 
-    // Initialize category buttons
-    function initCategoryButtons() {
-        document.querySelectorAll('.category-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Update active button styles
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active', 'bg-chocolate', 'text-white');
-                    btn.classList.add('bg-white', 'text-gray-700');
-                });
-                this.classList.add('active', 'bg-chocolate', 'text-white');
-                this.classList.remove('bg-white', 'text-gray-700');
+// Toast notification function (යාවත්කාලීන කරන ලදී)
+function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    toastMessage.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+    function attachEventListeners() {
+        // Category filter buttons
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
                 
-                // Filter products
-                const category = this.getAttribute('data-category');
-                renderProducts(category);
+                const category = button.dataset.category;
+                filterProducts(category);
             });
         });
+        
+        // Close popup
+        document.getElementById('closePopup').addEventListener('click', closeProductPopup);
+        document.getElementById('productPopup').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('productPopup')) {
+                closeProductPopup();
+            }
+        });
+        
+        // Quantity buttons
+        document.querySelector('.quantity-btn.decrement').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantityInput');
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                updateTotalPrice();
+            }
+        });
+        
+        document.querySelector('.quantity-btn.increment').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantityInput');
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+            updateTotalPrice();
+        });
+        
+        // Ensure quantity input changes update the price
+        document.getElementById('quantityInput').addEventListener('input', () => {
+            updateTotalPrice();
+        });
+        
+        document.getElementById('quantityInput').addEventListener('change', () => {
+            const quantityInput = document.getElementById('quantityInput');
+            if (parseInt(quantityInput.value) < 1 || isNaN(parseInt(quantityInput.value))) {
+                quantityInput.value = 1;
+            }
+            updateTotalPrice();
+        });
+        
+        // Sticky category navigation
+        window.addEventListener('scroll', () => {
+            const categories = document.getElementById('categories');
+            const shop = document.getElementById('shop');
+            const shopOffset = shop.offsetTop;
+            
+            if (window.pageYOffset > shopOffset - 80) {
+                categories.classList.add('bg-white', 'shadow-md');
+            } else {
+                categories.classList.remove('bg-white', 'shadow-md');
+            }
+        });
     }
-
+});
     // Mobile menu functionality
     function initMobileMenu() {
         const menuToggle = document.getElementById('menu-toggle');
@@ -1213,70 +1966,6 @@ Please let me know the payment details and delivery options. Thank you!`;
             setTimeout(createHeart, i * 300);
         }
     }
-
-    // Explore button functionality
-    function initExploreButton() {
-        const exploreBtn = document.getElementById('explore-btn');
-        if (!exploreBtn) return;
-        
-        exploreBtn.addEventListener('click', function() {
-            const usernameInput = document.getElementById('username');
-            if (!usernameInput) return;
-            
-            const userName = usernameInput.value.trim();
-            if (userName) {
-                // Save name for later use
-                localStorage.setItem('userName', userName);
-                
-                // Add button click animation
-                gsap.to(exploreBtn, {
-                    scale: 0.95,
-                    duration: 0.1,
-                    onComplete: () => {
-                        gsap.to(exploreBtn, {
-                            scale: 1,
-                            duration: 0.3,
-                            ease: 'elastic.out(1, 0.3)'
-                        });
-                    }
-                });
-                
-                // Scroll to products section
-                const shopSection = document.getElementById('shop');
-                if (shopSection) {
-                    shopSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-                
-                // Show welcome message
-                const toast = document.createElement('div');
-                toast.className = 'fixed bottom-4 right-4 bg-chocolate text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center opacity-0';
-                toast.style.transition = 'opacity 0.5s ease';
-                toast.innerHTML = `
-                    <i class="fas fa-heart mr-2"></i>
-                    <span>Welcome ${userName}! Browse our sweet collection ❤️</span>
-                `;
-                document.body.appendChild(toast);
-                
-                // Show toast with animation
-                setTimeout(() => {
-                    toast.style.opacity = '1';
-                }, 100);
-                
-                // Remove toast after 5 seconds
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    setTimeout(() => toast.remove(), 500);
-                }, 5000);
-            } else {
-                // Alert if name is empty
-                alert('Please enter your name to continue');
-                usernameInput.focus();
-            }
-        });
-    }
-
     // Navbar animations
     function initNavbarAnimations() {
         gsap.from('nav', {
@@ -1417,29 +2106,9 @@ Please let me know the payment details and delivery options. Thank you!`;
 
     // Run everything on page load
     initializeAll();
-});
 
-  // JavaScript for scroll to top button
-  const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    // Show button when scrolled down
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) { // Show after 300px of scrolling
-            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10');
-            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
-        } else {
-            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
-            scrollToTopBtn.classList.add('opacity-0', 'translate-y-10');
-        }
-    });
-    
-    // Scroll to top when button is clicked
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+
+
 
     // Add mobile menu functionality (this was commented out in your original code)
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1454,6 +2123,8 @@ Please let me know the payment details and delivery options. Thank you!`;
             mobileMenu.classList.remove('active');
         });
     }
+
+    
     </script>
 
 
