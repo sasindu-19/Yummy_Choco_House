@@ -1,978 +1,1463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta property="og:title" content="Yummy Choco House">
+    <meta property="og:description" content="Delicious Homemade Chocolates from Sri Lanka!">
+    <meta property="og:image" content="https://sasindu-19.github.io/Yummy_Choco_House/images/choco-banner.jpg">
+    <meta property="og:url" content="https://sasindu-19.github.io/Yummy_Choco_House/">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yummy Choco House - Premium Gifts</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <title>Yummy Choco House</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Yummy Choco House brings you the most delicious homemade chocolates in Sri Lanka. Order now for birthdays, events, or gifts!">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Yummy Choco House",
+    "image": "https://sasindu-19.github.io/Yummy_Choco_House/images/logo.png",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mahaedanda - Atakohota Road",
+        "addressLocality": "Karandeniya",
+        "addressCountry": "LK"
+    },
+    "url": "https://sasindu-19.github.io/Yummy_Choco_House/",
+    "telephone": "+94xxxxxxxxx"
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chocolate: {
+                            light: '#D2691E',
+                            DEFAULT: '#8B4513',
+                            dark: '#5D2906'
+                        },
+                        cream: {
+                            light: '#FFFDD0',
+                            DEFAULT: '#FFF8DC',
+                            dark: '#F5DEB3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary: #8B5642;
-            --primary-dark: #6D4534;
-            --primary-light: #C38E7D;
-            --secondary: #F9EFE5;
-            --secondary-dark: #E5D8CC;
-            --accent: #D45E5E;
-            --text-dark: #2D2D2D;
-            --text-light: #6C6C6C;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--secondary);
-            color: var(--text-dark);
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFF8E1;
             overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23be8a60' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        
-        /* Custom Classes */
-        .bg-primary {
-            background-color: var(--primary);
+
+        h1, h2, h3, .fancy-text {
+            font-family: 'Courgette', cursive;
         }
-        
-        .bg-primary-light {
-            background-color: var(--primary-light);
+
+        .navbar {
+            background-color: rgba(255, 248, 225, 0.9);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
         }
-        
-        .bg-secondary {
-            background-color: var(--secondary);
+
+        .chocolate-btn {
+            background: linear-gradient(135deg, #D2691E, #8B4513);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
         }
-        
-        .text-primary {
-            color: var(--primary);
+
+        .chocolate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
         }
-        
-        .text-primary-dark {
-            color: var(--primary-dark);
+
+        .teddy-accent {
+            background-color: #E6CCB2;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.2);
         }
-        
-        .text-accent {
-            color: var(--accent);
-        }
-        
-        .border-primary {
-            border-color: var(--primary);
-        }
-        
-        /* Header */
-        .header {
-            background-color: var(--primary);
-            background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Category Pills */
-        .category-container {
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            background-color: var(--secondary);
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+        .nav-link {
+            position: relative;
             transition: all 0.3s ease;
         }
-        
-        .category-btn {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-weight: 500;
-        }
-        
-        .category-btn.active {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .category-btn:hover:not(.active) {
-            background-color: var(--secondary-dark);
-            transform: translateY(-2px);
-        }
-        
-        /* Product Cards */
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-card .product-image-container {
-            height: 230px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .product-card .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-        }
-        
-        .product-card:hover .product-image {
-            transform: scale(1.1);
-        }
-        
-        .product-card .quick-view {
+
+        .nav-link::after {
+            content: '';
             position: absolute;
-            bottom: -50px;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #D2691E, #8B4513);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
+            border: 2px dashed #D2691E;
+        }
+
+        .chocolate-drip {
+            position: absolute;
+            top: -15px;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.5rem;
-            text-align: center;
-            transition: bottom 0.3s ease;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%238B4513' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,218.7C672,203,768,149,864,144C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
         }
-        
-        .product-card:hover .quick-view {
-            bottom: 0;
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
         }
-        
-        .product-card .product-badge {
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .heart-particle {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Popup Modal */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
+            font-size: 20px;
+            color: #D2691E;
+            animation: heartFade 3s ease-in-out forwards;
             opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-            padding: 15px;
-            backdrop-filter: blur(5px);
         }
-        
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
+
+        @keyframes heartFade {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            10% { transform: translateY(-10px) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-60px) scale(0); opacity: 0; }
         }
-        
-        .popup-content {
-            background-color: white;
-            border-radius: 16px;
-            width: 95%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow: auto;
-            position: relative;
-            transform: scale(0.9) translateY(30px);
-            opacity: 0;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .popup-overlay.active .popup-content {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-        
-        .close-popup {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 2;
-            font-size: 24px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .close-popup:hover {
-            transform: rotate(90deg);
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        /* Thumbnails */
-        .thumbnail {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .thumbnail:hover {
-            transform: translateY(-3px);
-        }
-        
-        .thumbnail.active {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px var(--primary-light);
-        }
-        
-        /* Custom Quantity Selector */
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            border: 2px solid var(--primary-light);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .quantity-btn {
-            width: 36px;
-            height: 36px;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-            transition: all 0.2s ease;
-        }
-        
-        .quantity-btn:hover {
-            background-color: var(--primary-light);
-            color: white;
-        }
-        
-        .quantity-input {
-            width: 50px;
-            text-align: center;
-            border: none;
-            font-size: 16px;
-            padding: 8px 4px;
-            background: transparent;
-            color: var(--text-dark);
-        }
-        
-        /* Order Button */
-        .order-btn {
-            background-image: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-        
-        .order-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-        }
-        
-        /* Scroll Animations */
-        .fade-up {
+
+        /* Custom animations */
+        [data-scroll] {
             opacity: 0;
             transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        [data-scroll].visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,245,238,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #D2691E, #8B4513);
+            color: white;
         }
         
-        /* Loader */
-        .loader {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            background-color: var(--secondary);
-            z-index: 999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+        .custom-shadow {
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.1);
         }
         
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);
         }
-        
-        .loader .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--primary-light);
+        #productGrid {
+            min-height: 500px;
+            position: relative;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #8B4513;
             border-radius: 50%;
-            border-top-color: var(--primary);
             animation: spin 1s linear infinite;
         }
-        
+
         @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 100;
-            transform: translateY(100px);
+
+        .product-card {
             opacity: 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        
-        .toast.show {
-            transform: translateY(0);
+
+        .product-card.visible {
             opacity: 1;
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--secondary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-        
-        /* Responsive */
-        @media (max-width: 640px) {
-            .category-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                padding-bottom: 10px;
-            }
-            
-            .category-container::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .category-inner {
-                display: inline-flex;
-                flex-wrap: nowrap;
-                padding: 0 10px;
-            }
-            
-            .category-btn {
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            
-            .main-image-container {
-                height: 250px !important;
-            }
-            
-            .popup-content {
-                padding: 1rem !important;
-            }
-            
-            .product-details {
-                padding: 1rem !important;
-            }
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
-    <!-- Page Loader -->
-    <div class="loader" id="pageLoader">
-        <div class="spinner"></div>
-    </div>
+<body class="min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed w-full top-0 z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- <img src="logo.jpg" alt="Logo" class="w-12 h-12 mr-3 rounded-full border-2 border-chocolate"> -->
+                <img src="logo.jpg" alt="Logo" class="w-16 h-16 mr-3 rounded-full border-2 border-chocolate">
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-center items-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-white">Yummy Choco House</h1>
+                <h1 class="text-2xl font-bold text-chocolate">Yummy Choco House</h1>
             </div>
-        </div>
-    </header>
-
-    <!-- Filter Categories -->
-    <div class="category-container" id="categories">
-        <div class="container mx-auto px-4">
-            <div class="category-inner flex flex-wrap justify-center gap-3">
-                <button class="category-btn active bg-primary text-white px-5 py-2 rounded-full transition" data-category="all">All Items</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="chocolate">Chocolates</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="teddy">Teddy Bears</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="valentine">Valentine's Special</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="gift">Gifts</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="toy">Toys</button>
-                <button class="category-btn bg-white text-primary px-5 py-2 rounded-full transition" data-category="perfume">Perfumes</button>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
+                <a href="#shop" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Products</a>
+                <a href="#about" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">About</a>
+                <a href="#footer" class="nav-link font-medium text-chocolate hover:text-chocolate-light transition-colors">Contact</a>
             </div>
-        </div>
-    </div>
-
-    <!-- Product Grid -->
-    <div id="shop" class="container mx-auto px-4 py-10">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-primary-dark fade-up">Our Premium Collection</h2>
-        <p class="text-center text-gray-600 mb-10 fade-up">Discover our exquisite range of gifts and treats for your loved ones</p>
+            
+            <!-- WhatsApp Button -->
+            <div class="hidden md:block">
+                <a href="#" class="chocolate-btn text-white font-medium px-4 py-2 rounded-full flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Order Now
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <!-- <div class="md:hidden">
+                <button id="menu-toggle" class="text-chocolate hover:text-chocolate-light focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div> -->
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
-            <!-- Products will be dynamically generated here -->
-        </div>
-    </div>
+        <!-- Mobile Navigation Menu -->
+        <!-- <div id="mobile-menu" class="mobile-menu fixed left-0 top-0 h-full w-64 bg-cream-light shadow-lg z-50 pt-20 px-6">
+            <button id="close-menu" class="absolute top-5 right-5 text-chocolate hover:text-chocolate-light">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="flex flex-col space-y-6">
+                <a href="#" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Home</a>
+                <a href="#shop" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Products</a>
+                <a href="#about" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">About</a>
+                <a href="#footer" class="font-medium text-chocolate hover:text-chocolate-light transition-colors">Contact</a>
+                <a href="#" class="chocolate-btn text-white font-medium px-4 py-2 rounded-full text-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Order Now
+                </a>
+            </div>
+        </div> -->
+    </nav>
     
-    <!-- Popup Modal -->
-    <div class="popup-overlay" id="productPopup">
-        <div class="popup-content">
-            <span class="close-popup" id="closePopup">&times;</span>
-            <div class="flex flex-col md:flex-row">
-                <!-- Main Image Container -->
-                <div class="w-full md:w-1/2">
-                    <div class="main-image-container h-96 bg-gray-50 flex items-center justify-center overflow-hidden">
-                        <img src="" id="popupMainImage" class="max-h-full max-w-full object-contain" alt="Product Image">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-28 pb-16 px-4" id="hero">
+        <div class="container mx-auto">
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 left-10 hidden md:block">
+                <!-- <img src="https://addictedtodates.com/wp-content/uploads/2019/01/vegan-milk-chocolate-recipe.jpg" alt="Chocolate" class="floating opacity-60" style="animation-delay: 0.5s;"> -->
+            </div>
+            <div class="absolute bottom-20 right-10 hidden md:block">
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCc71BaAcYUrBi5od6rlRelNyTCRuA9AtqBg&s" alt="Teddy" class="floating opacity-70" style="animation-delay: 1s;"> -->
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left Column - Content -->
+                <div>
+                    <div class="mb-4 inline-block">
+                        <span class="px-4 py-1 rounded-full bg-cream-dark text-chocolate-dark text-sm font-bold">Sweet Delights</span>
                     </div>
                     
-                    <!-- Thumbnails -->
-                    <div class="thumbnails-container flex gap-3 justify-center mt-4 px-4 pb-4" id="thumbnailsContainer">
-                        <!-- Thumbnails will be added here dynamically -->
-                    </div>
-                </div>
-                
-                <!-- Product Details -->
-                <div class="w-full md:w-1/2 product-details p-6 md:p-8">
-                    <span class="inline-block bg-primary-light text-white text-xs font-semibold px-3 py-1 rounded-full mb-4" id="popupProductCategory">Category</span>
-                    <h3 class="text-2xl md:text-3xl font-bold text-primary-dark mb-2" id="popupProductName"></h3>
-                    <div class="flex items-center gap-2 mb-4">
-                        <p class="text-xl font-semibold text-primary" id="popupProductPrice"></p>
-                        <div class="w-px h-5 bg-gray-300"></div>
-                        <p class="text-gray-600" id="popupProductId"></p>
-                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-chocolate-dark">
+                        Sweet Gifts for<br>
+                        <span class="text-chocolate">Special Moments</span>
+                    </h1>
                     
-                    <div class="my-6 border-t border-b border-gray-100 py-6">
-                        <p class="text-gray-700 leading-relaxed" id="popupProductDescription"></p>
-                    </div>
+                    <p class="text-chocolate text-lg mb-8">
+                        Discover our adorable collection of chocolate boxes, teddy bears, and unique gifts that make every occasion memorable and delightful.
+                    </p>
                     
-                    <!-- Quantity Selector -->
-                    <div class="quantity-selector">
-                        <label class="text-gray-700 font-medium">Quantity:</label>
-                        <div class="quantity-control">
-                            <button class="quantity-btn decrement">-</button>
-                            <input type="number" id="quantityInput" class="quantity-input" value="1" min="1">
-                            <button class="quantity-btn increment">+</button>
+                    <!-- Name Input Form -->
+                    <div class="hero-card p-6 relative mb-8">
+                        <div class="chocolate-drip"></div>
+                        <h3 class="text-xl text-chocolate-dark font-bold mb-4">Tell us your name to get started</h3>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Enter your name" 
+                                class="flex-grow px-4 py-3 rounded-lg border-2 border-cream-dark focus:outline-none focus:border-chocolate"
+                            >
+                            <button 
+                                id="explore-btn" 
+                                class="chocolate-btn text-white font-medium px-6 py-3 rounded-lg flex items-center justify-center"
+                            >
+                                <span>Explore Gifts</span>
+                                <i class="fas fa-gift ml-2"></i>
+                            </button>
                         </div>
                     </div>
                     
-                    <p class="text-lg font-semibold text-primary-dark mb-6" id="popupTotalPrice">Total: Rs. 0</p>
-                    
-                    <a href="#" id="whatsappButton" class="order-btn w-full sm:w-auto flex items-center justify-center gap-2 no-underline" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                        </svg>
-                        Order via WhatsApp
+                    <div class="flex flex-wrap gap-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Made with Love</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Fast Delivery</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-chocolate flex items-center justify-center text-white">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span class="text-chocolate ml-2">Easy Ordering</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Image -->
+                <div class="flex justify-center" id="hero-image-container">
+                    <div class="relative">
+                        <!-- Chocolate background circle -->
+                        <div class="absolute inset-0 w-full h-full rounded-full bg-gradient-to-br from-chocolate-light to-chocolate-dark opacity-20 transform scale-110 blur-xl"></div>
+                        
+                        <!-- Inner circle with teddy accent -->
+                        <div class="teddy-accent w-64 h-64 md:w-80 md:h-80 flex items-center justify-center p-3 relative overflow-hidden">
+                            <!-- Heart particles container -->
+                            <div id="heart-particles" class="absolute inset-0"></div>
+                            
+                            <img 
+                                src="main.png" 
+                                alt="Chocolate Gift Box with Teddy" 
+                                class="object-cover rounded-full p-2 border-4 border-chocolate shadow-lg"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Popular Categories Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 text-chocolate-dark">Our Collections</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Explore our most popular gift categories</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            <!-- Category 1 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg" alt="Chocolates" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Chocolates</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Category 2 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s" alt="Teddy Bears" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Teddy Bears</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Category 3 -->
+            <div class="relative rounded-xl overflow-hidden group h-64 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s" alt="Valentine's Special" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-chocolate-dark to-transparent opacity-70"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 class="text-white text-xl font-bold mb-1">Valentine's Special</h3>
+                    <a href="#" class="text-cream-light hover:text-white flex items-center text-sm">
+                        Explore Collection
+                        <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toastNotification">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <span id="toastMessage">Added to cart!</span>
+</section>
+    <!-- Filter Categories -->
+    <div class="container mx-auto px-4 mb-8" id="categories">
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button class="category-btn active bg-chocolate text-white px-4 py-2 rounded-full hover:bg-chocolate-light transition" data-category="all">All Items</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="chocolate">Chocolates</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="teddy">Teddy Bears</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="valentine">Valentine's Special</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="gift">Gifts</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="toy">Toys</button>
+            <button class="category-btn bg-white text-gray-700 px-4 py-2 rounded-full hover:bg-cream-dark transition" data-category="perfume">Perfumes</button>
+        </div>
     </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize GSAP
-    gsap.registerPlugin(ScrollTrigger);
 
-    // Product Data
+    <!-- Product Grid -->
+    <div id="shop" class="container mx-auto px-4 mb-16 pt-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-chocolate-dark">Our Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid"></div>
+    </div>
+
+        <!-- Featured Products Section -->
+<section class="py-16 bg-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 text-chocolate-dark">Special Offers</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Explore our limited-time gift collections and special bundles at amazing prices!</p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Special Offer 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://www.yamu.lk/wp-content/uploads/2021/02/21_32006_30VA_01ec.jpg" alt="Valentine Bundle" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">SAVE 20%</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Valentine's Day Bundle</h3>
+                    <p class="text-gray-600 mb-4">Heart-shaped chocolate box with teddy bear and perfume</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 line-through">Rs. 5,500</span>
+                            <span class="text-chocolate-dark font-bold text-xl ml-2">Rs. 4,400</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Offer 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1" alt="Premium Gift Set" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">SAVE 15%</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Premium Gift Set</h3>
+                    <p class="text-gray-600 mb-4">Luxury chocolate assortment with custom name key tag</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 line-through">Rs. 3,800</span>
+                            <span class="text-chocolate-dark font-bold text-xl ml-2">Rs. 3,230</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Offer 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <img src="https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg" alt="Dark Chocolate Set" class="w-full h-56 object-cover">
+                    <div class="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg font-bold">NEW</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-chocolate-dark mb-2">Dark Chocolate Lover's Set</h3>
+                    <p class="text-gray-600 mb-4">Premium dark chocolate assortment with gift box</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-chocolate-dark font-bold text-xl">Rs. 2,400</span>
+                        </div>
+                        <button class="chocolate-btn text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- How It Works Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-6 text-chocolate-dark">How To Order</h2>
+        <p class="text-center text-chocolate mb-12 max-w-2xl mx-auto">Ordering your favorite chocolate gifts is simple and easy!</p>
+        
+        <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">1</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Browse Products</h3>
+                <p class="text-gray-600">Explore our delicious selection of chocolate gifts</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">2</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Click Buy Now</h3>
+                <p class="text-gray-600">Select your favorite item and click the Buy Now button</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">3</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Chat on WhatsApp</h3>
+                <p class="text-gray-600">Complete your order details through WhatsApp</p>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-chocolate flex items-center justify-center text-white text-xl font-bold mb-4">4</div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Receive Your Gift</h3>
+                <p class="text-gray-600">Enjoy fast delivery of your chocolate treats</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Customer Reviews Section -->
+<section class="py-16 bg-gradient-to-b from-white to-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">What Our Customers Say</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">S</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Samantha P.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "The Valentine's gift box was perfect! My boyfriend loved the combination of chocolates and the teddy bear. Delivery was quick and everything arrived in perfect condition."
+                </p>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">R</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Rajith M.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "Ordered a custom chocolate box for my wife's birthday. The communication was excellent and they created exactly what I wanted. Will definitely order again!"
+                </p>
+            </div>
+            
+            <!-- Review 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-chocolate rounded-full flex items-center justify-center text-white mr-4">
+                        <span class="text-xl font-bold">N</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-chocolate-dark">Nilmini D.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "The quality of chocolates is amazing! Perfect sweetness and the packaging is so beautiful. My daughter loved the cute teddy that came with it."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-cream-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">About Us</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-chocolate rounded-2xl opacity-20 transform rotate-3"></div>
+                    <img src="story.png" alt="Our Story" class="rounded-2xl relative z-10 shadow-lg">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-chocolate-dark mb-4">Our Sweet Journey</h3>
+                    <p class="text-chocolate mb-6">
+                        Yummy Choco House started as a small family business with a passion for creating delightful chocolate treats and gift experiences. Since 2023, we have been dedicated to making special moments even sweeter for our customers.
+                    </p>
+                    <p class="text-chocolate mb-6">
+                        We carefully select the finest ingredients and create unique gift combinations that bring joy and happiness to your loved ones. Every product is crafted with love and attention to detail.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">100+</div>
+                            <div class="text-chocolate">Happy Customers</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">50+</div>
+                            <div class="text-chocolate">Gift Options</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="text-3xl font-bold text-chocolate-dark mb-2">7+</div>
+                            <div class="text-chocolate">Categories</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- FAQ Section -->
+<section class="py-16 bg-cream-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">Frequently Asked Questions</h2>
+        
+        <div class="max-w-3xl mx-auto">
+            <!-- FAQ Item 1 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">How do I place an order?</h3>
+                <p class="text-gray-700">
+                    Simply browse our products, click the "Buy Now" button on the item you like, and you'll be redirected to WhatsApp with a pre-filled message. Just send the message and we'll guide you through the rest of the ordering process.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">What payment methods do you accept?</h3>
+                <p class="text-gray-700">
+                    We accept bank transfers and cash on delivery within Colombo. Payment details will be provided after confirming your order through WhatsApp.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Do you offer delivery?</h3>
+                <p class="text-gray-700">
+                    Yes, we offer delivery throughout Sri Lanka. Delivery within Colombo is Rs. 300, and outside Colombo varies based on location. Exact delivery charges will be confirmed during order placement.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="mb-6 bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Can I customize my chocolate box?</h3>
+                <p class="text-gray-700">
+                    Yes! We offer customization options for most of our products. Just let us know your preferences when chatting with us on WhatsApp, and we'll do our best to create exactly what you're looking for.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">How long do deliveries take?</h3>
+                <p class="text-gray-700">
+                    Deliveries within Colombo typically take 1-2 days. Outside Colombo may take 2-3 days depending on the location. For urgent orders, please mention this when placing your order and we'll try our best to accommodate your timeline.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Us Section -->
+<section class="py-16 bg-cream-light" id="contact">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-chocolate-dark">Contact Us</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- WhatsApp -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">WhatsApp</h3>
+                <p class="text-gray-700 mb-4">Chat with us directly</p>
+                <a href="https://wa.me/94762057685" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i>+94 76 205 7685
+                </a>
+            </div>
+            
+            <!-- Email -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Email</h3>
+                <p class="text-gray-700 mb-4">Send us an email</p>
+                <a href="mailto:info@yummychocohouse.com" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>Email Us
+                </a>
+            </div>
+            
+            <!-- Instagram -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="w-16 h-16 bg-pink-600 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3 class="text-xl font-bold text-chocolate-dark mb-2">Instagram</h3>
+                <p class="text-gray-700 mb-4">Follow our latest updates</p>
+                <a href="https://instagram.com/yummychocohouse" class="chocolate-btn text-white px-6 py-2 rounded-lg inline-flex items-center justify-center">
+                    <i class="fab fa-instagram mr-2"></i>@yummychocohouse
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-12 bg-chocolate">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-cream-dark rounded-full opacity-20"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-chocolate-light rounded-full opacity-20"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-2xl font-bold text-center mb-2 text-chocolate-dark">Join Our Sweet Family</h2>
+                <p class="text-center text-gray-600 mb-6">Subscribe to receive exclusive offers, discounts and sweet updates!</p>
+                
+                <form class="flex flex-col md:flex-row gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        class="flex-grow px-4 py-3 rounded-lg border-2 border-cream-dark focus:outline-none focus:border-chocolate"
+                        required
+                    >
+                    <button 
+                        type="submit" 
+                        class="chocolate-btn text-white font-medium px-6 py-3 rounded-lg flex items-center justify-center"
+                    >
+                        <i class="fas fa-envelope mr-2"></i>
+                        Subscribe
+                    </button>
+                </form>
+                
+                <p class="text-center text-gray-500 text-sm mt-4">
+                    We'll never share your email with anyone else. You can unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call to Action Section -->
+<section class="py-16 bg-chocolate-dark text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Sweeten Someone's Day?</h2>
+        <p class="mb-8 text-cream-light max-w-2xl mx-auto">
+            Order now and surprise your loved ones with our delicious chocolate gifts and adorable teddy bears!
+        </p>
+        <a href="#shop" class="bg-white text-chocolate-dark hover:bg-cream-light transition-colors px-8 py-4 rounded-full font-bold text-lg inline-flex items-center">
+            <i class="fas fa-gift mr-2"></i>
+            Browse Our Collection
+        </a>
+    </div>
+</section>
+
+    <!-- Footer -->
+<footer id="footer" class="bg-chocolate-dark text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <!-- About Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Yummy Choco House</h3>
+                <p class="text-gray-300 mb-4">
+                    Bringing sweetness to your special moments since 2023. We specialize in chocolate gifts, teddy bears, and custom gift sets.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#shop" class="text-gray-300 hover:text-white transition-colors">Shop</a></li>
+                    <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Categories -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Chocolates</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Teddy Bears</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Valentine's Special</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Gifts</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Perfumes</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Contact Info</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        <span>+94 76 205 7685</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>info@yummychocohouse.com</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Colombo, Sri Lanka</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-clock mr-2"></i>
+                        <span>Open: 9AM - 6PM (Mon-Sat)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-chocolate pt-6 text-center text-gray-300">
+            <p>&copy; 2025 Yummy Choco House. All rights reserved.</p>
+            <div class="mt-2 text-sm">
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors">Privacy Policy</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-chocolate text-white shadow-lg flex items-center justify-center transform transition-all duration-300 opacity-0 translate-y-10 hover:bg-chocolate-light">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+        // Initialize GSAP
+document.addEventListener('DOMContentLoaded', () => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // WhatsApp Phone Number
+    const phoneNumber = '94762057685';
+
+    // Product data with unique product IDs
     const products = [
         { 
             id: "CHO001",
             name: "Milk Chocolate Box", 
             price: "Rs. 1,500", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s", 
-            category: "chocolate",
-            description: "A delightful assortment of premium milk chocolates perfect for any occasion.",
-            additionalImages: [
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG6msVJkZiYt4Bo-661G6P7b5_kVDq4JJ__Q&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsD8mkWR_qsYWQKkThWJfIb0YUfxjz5nqRMA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvftaBmzKLt5UAu7N4tKYRHat-Q-4n5mK1iw&s"
-            ],
-            badge: "Popular"
+            category: "chocolate"
         },
         { 
             id: "CHO002",
             name: "Dark Chocolate Collection", 
             price: "Rs. 1,800", 
             image: "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg", 
-            category: "chocolate",
-            description: "Rich dark chocolate selections with varying cacao percentages for the true chocolate connoisseur.",
-            additionalImages: [
-                "https://www.cocoablack.com/wp-content/uploads/2022/11/9C7A5559-1-1-500x500.jpg",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWvS4JMPrBPCQo-8EFmFf32XBhjsLLowRrpg&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TWxrz52uTPd2U9aSRkTeYh8PX_HxCNMYSA&s"
-            ],
-            badge: "Best Seller"
+            category: "chocolate"
         },
         { 
             id: "VAL001",
             name: "Valentine's Heart Box", 
             price: "Rs. 2,500", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s", 
-            category: "valentine",
-            description: "Express your love with this heart-shaped box filled with premium chocolates and treats.",
-            additionalImages: [
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCMlzD99Ri6aLtLYK4-rSU5DLfczXLTjWzg&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzT4-_Y-JRD7mslPPMpBFcX8VjK9B3JYL8CA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV6WMG-fxIUvAb7H7NSbFzUeLtyQHSiF0A8g&s"
-            ],
-            badge: "Limited"
+            category: "valentine"
         },
         { 
             id: "TED001",
             name: "Teddy Bear - Brown", 
             price: "Rs. 1,200", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s", 
-            category: "teddy",
-            description: "Soft and cuddly brown teddy bear, perfect for gifting to loved ones of all ages.",
-            additionalImages: [
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU1opRq2HGble1PxUq082KP9x_v15SvVzhA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaAPPBBDYbTUmRIFSfNJ_mqof9whPeQ6-3Ww&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTXk_13qZGDgps9WTJK3oHHf6TdAvq9P6aw&s"
-            ]
+            category: "teddy"
         },
         { 
             id: "TED002",
             name: "Teddy Bear - Pink", 
             price: "Rs. 1,200", 
             image: "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg", 
-            category: "teddy",
-            description: "Adorable pink teddy bear with a heart embroidery, ideal for Valentine's Day or birthdays.",
-            additionalImages: [
-                "https://media.wishque.com/data/images/products/10088/43518769_880419381790_0.18430800-1676035279.jpg",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyO6tcSawjLfMDan4suVz40xBPdVH-B-587w&s",
-                "https://wallmantra.com/wp-content/uploads/frantic-trading-pvt-ltd-soft-toys-bow-tie-soft-premium-blue-big-teddy-bear-32308222460070.jpg"
-            ],
-            badge: "Popular"
+            category: "teddy"
         },
         { 
             id: "GFT001",
             name: "Luxury Chocolate Gift Set", 
             price: "Rs. 3,500", 
             image: "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1", 
-            category: "gift",
-            description: "Premium gift set featuring an assortment of luxury chocolates in elegant packaging.",
-            additionalImages: [
-                "https://cdn11.bigcommerce.com/s-oyt6pom1dt/images/stencil/1280x1280/products/3380/5589/chocolate-selection-15pc__35017.1666367616.jpg?c=1",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDGFLtXYaUP-jPjCpmf1n7DVkMZ_7jX5UYlA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVoZoO9nORZ2iA9jkLEvR2lHyK7w3TLlSUxg&s"
-            ],
-            badge: "Premium"
+            category: "gift"
         },
         { 
             id: "KEY001",
             name: "Heart-shaped Key Tag", 
             price: "Rs. 350", 
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
-            category: "gift",
-            description: "Elegant heart-shaped key tag made from high-quality material, perfect for a small token of affection.",
-            additionalImages: [
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9j-ys-rjGWcDuAWi-6kr1YQzIu2u5E4HQ&s", 
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQIULQ3vz5mM2wJxX4flBdF6wlWTiR8J5NfA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXfQt1_ucaJ_8FMx46TfzBHgrOzcbGr_6Mvw&s"
-            ]
-        },
-        { 
-            id: "TOY001",
-            name: "Plush Unicorn", 
-            price: "Rs. 950", 
-            image: "https://img.drz.lazcdn.com/static/lk/p/918a9a912f73f73838579e09bea215ab.jpg_720x720q80.jpg", 
-            category: "toy",
-            description: "Soft and cuddly plush unicorn with rainbow mane and tail, perfect for children of all ages.",
-            additionalImages: [
-                "https://img.drz.lazcdn.com/static/lk/p/918a9a912f73f73838579e09bea215ab.jpg_720x720q80.jpg",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9afr3J5g6mONJ3c0fb_uvb_-c3Adw0bz4hw&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIxkKAVW4XP5VZa2eFYelCzuqiWg1DET2Daw&s"
-            ],
-            badge: "New"
+            category: "gift"
         },
         { 
             id: "PER001",
-            name: "Floral Perfume", 
-            price: "Rs. 2,800", 
-            image: "https://images-cdn.ubuy.ae/638e75ab0445187f6b1e8561-she-38ml-romantic-women-s-perfume.jpg", 
-            category: "perfume",
-            description: "Elegant floral perfume with delicate notes of jasmine, rose, and vanilla. Long-lasting fragrance.",
-            additionalImages: [
-                "https://images-cdn.ubuy.ae/638e75ab0445187f6b1e8561-she-38ml-romantic-women-s-perfume.jpg",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXhfhZmmTGqNzIIl3djBa3vRlwhFdK6Mg9w&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5yQzw0JuYJMiVLaOrG-GFuPmHqnQj8gG81A&s"
-            ],
-            badge: "Exclusive"
+            name: "Valentine's Special Perfume", 
+            price: "Rs. 1,800", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCRYJFG05lqBp5zO8oLAv9a3gbn-Uh67prQ&s", 
+            category: "perfume"
         },
         { 
-            id: "PER002",
-            name: "Men's Cologne", 
-            price: "Rs. 3,200", 
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS127BIk_7TrXjPwmcp_a9zO2SCuKA4uefcxQ&s", 
-            category: "perfume",
-            description: "Sophisticated men's cologne with woody and citrus notes. Perfect for daily wear or special occasions.",
-            additionalImages: [
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS127BIk_7TrXjPwmcp_a9zO2SCuKA4uefcxQ&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnIW2NBXnGALx24QoUJ8d5jTuLrUZQ6CWAUw&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuGfPFRTLuoJ--r92pS_ftmhUcQJ3FcaU1A&s"
-            ]
+            id: "TOY001",
+            name: "Small Soft Toy - Rabbit", 
+            price: "Rs. 850", 
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwEe9EzMPYXDVPjU_92AKa4nu5BO3MzT-AkQ&s", 
+            category: "toy"
         },
         { 
             id: "VAL002",
-            name: "Love Letter Chocolate Box", 
-            price: "Rs. 1,950", 
-            image: "https://rochiechocolates.com/cdn/shop/files/LoveYouBoxWood2.png?v=1717608018", 
-            category: "valentine",
-            description: "Express your feelings with this love letter-shaped chocolate box containing assorted pralines and truffles.",
-            additionalImages: [
-                "https://rochiechocolates.com/cdn/shop/files/LoveYouBoxWood2.png?v=1717608018",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZGTCxrk4BVCJzIQKTtWWMfjkX0XRMq4SYyA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3tpdQkMLXN7MsS3OgFnVw-2fgFHGXMEYXZQ&s"
-            ],
-            badge: "Valentine's Day"
+            name: "Valentine's Couple Teddy Set", 
+            price: "Rs. 2,200", 
+            image: "https://m.media-amazon.com/images/I/51k72sm65hL._AC_UF1000,1000_QL80_.jpg", 
+            category: "valentine"
         },
         { 
-            id: "GFT002",
-            name: "Birthday Gift Hamper", 
-            price: "Rs. 4,500", 
-            image: "https://media.wishque.com/data/images/products/11292/thumbnail/51926821_646969165239_0.65532900-1705127305.jpghttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIEiz1PlLCXL-a_YA73u0Be-_-o2XuXuqTQQ&s", 
-            category: "gift",
-            description: "Complete birthday gift hamper with chocolates, teddy bear, greeting card, and more.",
-            additionalImages: [
-                "https://media.wishque.com/data/images/products/11292/thumbnail/51926821_646969165239_0.65532900-1705127305.jpg",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi3vkhGu_B81sQvqcEU63j0Gf-NUJrWWDBIA&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS67N3_FPJhkB0F4ahuxwkBgNRJfZ8kDM5GYA&s"
-            ],
-            badge: "Premium"
+            id: "CHO003",
+            name: "Premium Chocolate Assortment", 
+            price: "Rs. 2,800", 
+            image: "https://m.media-amazon.com/images/I/61P9fT4QAWL._SL1200_.jpg", 
+            category: "chocolate"
+        },
+        { 
+            id: "KEY002",
+            name: "Custom Name Key Tag", 
+            price: "Rs. 450", 
+            image: "https://static-01.daraz.lk/p/f940c91611eb51921be90dd9f892b3b9.jpg", 
+            category: "gift"
         }
     ];
 
-    // Page Loader Handling
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('pageLoader').classList.add('hidden');
-        }, 1000);
-    });
+    // Function to render products
+    function renderProducts(filterCategory = 'all') {
+        const container = document.getElementById('productGrid');
+        if (!container) {
+            console.error('Product grid container not found');
+            return;
+        }
+        
+        container.innerHTML = ''; // Clear previous content
 
-    // Initialize Page
-    populateProducts(products);
-    initializeAnimations();
-    attachEventListeners();
+        // Filter products based on category
+        const filteredProducts = filterCategory === 'all' 
+            ? products 
+            : products.filter(product => product.category === filterCategory);
 
-    // Functions
-    function populateProducts(productsArray) {
-        const productGrid = document.getElementById('productGrid');
-        productGrid.innerHTML = '';
-
-        productsArray.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card rounded-xl overflow-hidden fade-up';
-            productCard.dataset.category = product.category;
-            productCard.dataset.id = product.id;
-
-            let badgeHtml = '';
-            if (product.badge) {
-                badgeHtml = `<div class="product-badge">${product.badge}</div>`;
-            }
-
-            productCard.innerHTML = `
-                <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
-                    <div class="quick-view">Quick View</div>
-                    ${badgeHtml}
+        // Create product cards
+        filteredProducts.forEach((product, index) => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl overflow-hidden custom-shadow transition-all duration-300 card-hover product-card opacity-0 transform translate-y-8';
+            card.setAttribute('data-category', product.category);
+            card.innerHTML = `
+            <div class="relative">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                <span class="absolute top-3 right-3 bg-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
+                <span class="absolute top-3 left-3 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">${product.id}</span>
+            </div>
+            <div class="p-4">
+                <h3 class="font-semibold text-lg text-gray-800 mb-1">${product.name}</h3>
+                <p class="font-bold text-chocolate mb-3">${product.price}</p>
+                <div class="mb-3">
+                <select id="qty-${product.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chocolate text-gray-700">
+                    <option value="1">Qty: 1</option>
+                    <option value="2">Qty: 2</option>
+                    <option value="3">Qty: 3</option>
+                    <option value="4">Qty: 4</option>
+                    <option value="5">Qty: 5</option>
+                </select>
                 </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold text-primary-dark">${product.name}</h3>
-                    <div class="flex justify-between items-center mt-2">
-                        <p class="font-medium text-primary">${product.price}</p>
-                        <p class="text-sm text-gray-500">${product.id}</p>
-                    </div>
-                </div>
+                <button 
+                class="w-full bg-gradient-to-r from-chocolate-light to-chocolate text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition flex items-center justify-center buy-now-btn"
+                data-product-id="${product.id}"
+                data-product-name="${product.name}"
+                data-product-price="${product.price}"
+                >
+                <i class="fab fa-whatsapp mr-2"></i> Buy Now
+                </button>
+            </div>
             `;
+            container.appendChild(card);
 
-            productGrid.appendChild(productCard);
+            // Animate cards using GSAP with a slight delay
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "power2.out"
+            });
+        });
 
-            // Add click event to product card
-            productCard.addEventListener('click', () => {
-                openProductPopup(product);
+        // If no products match the filter
+        if (filteredProducts.length === 0) {
+            const emptyMessage = document.createElement('div');
+            emptyMessage.className = 'col-span-full text-center py-8 text-gray-600';
+            emptyMessage.innerHTML = `
+                <i class="fas fa-search text-4xl mb-3 text-chocolate-light"></i>
+                <p class="text-lg">No products found in this category.</p>
+            `;
+            container.appendChild(emptyMessage);
+        }
+
+        // Add event listeners to Buy Now buttons
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const productName = this.getAttribute('data-product-name');
+                const productPrice = this.getAttribute('data-product-price');
+                buyNow(productId, productName, productPrice);
             });
         });
     }
 
-    function initializeAnimations() {
-        // Animate fade-up elements
-        gsap.utils.toArray('.fade-up').forEach(element => {
-            gsap.fromTo(element, 
-                { y: 30, opacity: 0 }, 
-                { 
-                    y: 0, 
-                    opacity: 1, 
-                    duration: 0.8, 
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
+    // Function to handle "Buy Now" click
+    window.buyNow = function(productId, productName, productPrice) {
+        // Get selected quantity
+        const quantitySelect = document.getElementById(`qty-${productId}`);
+        if (!quantitySelect) {
+            console.error(`Quantity select for ${productId} not found`);
+            return;
+        }
+        const quantity = quantitySelect.value;
+        
+        // Get user name (if provided)
+        const userNameInput = document.getElementById('username');
+        const userName = userNameInput && userNameInput.value.trim() ? userNameInput.value.trim() : 'Customer';
+        
+        // Create WhatsApp message
+        const message = `Hello Yummy Choco House! 👋 I'm ${userName} and I would like to order:
+
+🎁 *Product*: *${productName}* (${productId})  
+🔢 *Quantity*: *${quantity}*  
+💰 *Price*: *${productPrice}*
+
+Please let me know the payment details and delivery options. Thank you!`;
+
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Open WhatsApp with the message
+        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+    };
+
+    // Initialize category buttons
+    function initCategoryButtons() {
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button styles
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-chocolate', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-700');
+                });
+                this.classList.add('active', 'bg-chocolate', 'text-white');
+                this.classList.remove('bg-white', 'text-gray-700');
+                
+                // Filter products
+                const category = this.getAttribute('data-category');
+                renderProducts(category);
+            });
+        });
+    }
+
+    // Mobile menu functionality
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && closeMenu && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        }
+    }
+
+    // Scroll animations
+    function initScrollAnimations() {
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            const elementHeight = el.offsetHeight;
+            const windowHeight = window.innerHeight;
+            
+            return (
+                elementTop <= windowHeight - (elementHeight * (percentageScroll/100))
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        // Initialize
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation();
+    }
+
+    // Hero image heart animation
+    function createHeartParticles() {
+        const heartContainer = document.getElementById('heart-particles');
+        if (!heartContainer) return;
+        
+        const createHeart = () => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            
+            // Random position within container
+            const leftPos = Math.random() * 100;
+            heart.style.left = `${leftPos}%`;
+            
+            // Random animation delay
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+            
+            heartContainer.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        };
+        
+        // Create hearts at intervals
+        setInterval(createHeart, 500);
+        
+        // Create initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    }
+
+    // Explore button functionality
+    function initExploreButton() {
+        const exploreBtn = document.getElementById('explore-btn');
+        if (!exploreBtn) return;
+        
+        exploreBtn.addEventListener('click', function() {
+            const usernameInput = document.getElementById('username');
+            if (!usernameInput) return;
+            
+            const userName = usernameInput.value.trim();
+            if (userName) {
+                // Save name for later use
+                localStorage.setItem('userName', userName);
+                
+                // Add button click animation
+                gsap.to(exploreBtn, {
+                    scale: 0.95,
+                    duration: 0.1,
+                    onComplete: () => {
+                        gsap.to(exploreBtn, {
+                            scale: 1,
+                            duration: 0.3,
+                            ease: 'elastic.out(1, 0.3)'
+                        });
+                    }
+                });
+                
+                // Scroll to products section
+                const shopSection = document.getElementById('shop');
+                if (shopSection) {
+                    shopSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Show welcome message
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-chocolate text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center opacity-0';
+                toast.style.transition = 'opacity 0.5s ease';
+                toast.innerHTML = `
+                    <i class="fas fa-heart mr-2"></i>
+                    <span>Welcome ${userName}! Browse our sweet collection ❤️</span>
+                `;
+                document.body.appendChild(toast);
+                
+                // Show toast with animation
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                }, 100);
+                
+                // Remove toast after 5 seconds
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            } else {
+                // Alert if name is empty
+                alert('Please enter your name to continue');
+                usernameInput.focus();
+            }
+        });
+    }
+
+    // Navbar animations
+    function initNavbarAnimations() {
+        gsap.from('nav', {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    }
+
+    // Hero section animations
+    function initHeroAnimations() {
+        const heroTl = gsap.timeline();
+        
+        // Check if hero elements exist before animating
+        const heroTitle = document.querySelector('#hero h1');
+        const heroDescription = document.querySelector('#hero p');
+        const heroCard = document.querySelector('.hero-card');
+        const heroImage = document.querySelector('#hero-image-container');
+        
+        if (heroTitle) {
+            heroTl.from(heroTitle, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        }
+        
+        if (heroDescription) {
+            heroTl.from(heroDescription, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.6');
+        }
+        
+        if (heroCard) {
+            heroTl.from(heroCard, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.4');
+        }
+        
+        if (heroImage) {
+            heroTl.from(heroImage, {
+                scale: 0.8,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'back.out(1.7)'
+            }, '-=0.6');
+        }
+        
+        // Teddy accent animations if they exist
+        const teddyAccents = document.querySelectorAll('.teddy-accent');
+        if (teddyAccents.length > 0) {
+            heroTl.from(teddyAccents, {
+                scale: 0.5,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: 'elastic.out(1, 0.5)'
+            }, '-=0.6');
+        }
+    }
+
+    // About section animations
+    function initAboutSectionAnimations() {
+        const aboutSection = document.querySelector('#about');
+        if (!aboutSection) return;
+        
+        ScrollTrigger.batch('#about .grid > div', {
+            onEnter: batch => gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: 'power3.out'
+            }),
+            start: 'top 80%'
+        });
+    }
+
+    // Smooth scroll functionality
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('active');
                     }
                 }
-            );
-        });
-    }
-
-    function filterProducts(category) {
-        const filteredProducts = category === 'all' 
-            ? products 
-            : products.filter(product => product.category === category);
-        
-        populateProducts(filteredProducts);
-        initializeAnimations();
-    }
-
-    function openProductPopup(product) {
-        const popup = document.getElementById('productPopup');
-        const popupName = document.getElementById('popupProductName');
-        const popupPrice = document.getElementById('popupProductPrice');
-        const popupId = document.getElementById('popupProductId');
-        const popupDescription = document.getElementById('popupProductDescription');
-        const popupCategory = document.getElementById('popupProductCategory');
-        const popupMainImage = document.getElementById('popupMainImage');
-        const thumbnailsContainer = document.getElementById('thumbnailsContainer');
-        const totalPrice = document.getElementById('popupTotalPrice');
-        const quantityInput = document.getElementById('quantityInput');
-        const whatsappButton = document.getElementById('whatsappButton');
-
-        // Set product details
-        popupName.textContent = product.name;
-        popupPrice.textContent = product.price;
-        popupId.textContent = `ID: ${product.id}`;
-        popupDescription.textContent = product.description;
-        popupCategory.textContent = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-        popupMainImage.src = product.image;
-        
-        // Reset quantity input
-        quantityInput.value = 1;
-        
-        // Set initial total price
-        const priceValue = parsePriceString(product.price);
-        totalPrice.textContent = `Total: ${product.price}`;
-
-        // Generate thumbnails
-        thumbnailsContainer.innerHTML = '';
-        product.additionalImages.forEach((img, index) => {
-            const thumbnail = document.createElement('div');
-            thumbnail.className = `thumbnail h-16 w-16 rounded-lg overflow-hidden ${index === 0 ? 'active' : ''}`;
-            thumbnail.innerHTML = `<img src="${img}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">`;
-            thumbnailsContainer.appendChild(thumbnail);
-
-            // Add click event to thumbnail
-            thumbnail.addEventListener('click', () => {
-                document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-                thumbnail.classList.add('active');
-                popupMainImage.src = img;
             });
         });
-
-        // Set WhatsApp button href
-        whatsappButton.href = generateWhatsAppLink(product, 1);
-
-        // Show popup
-        popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
 
-    function closeProductPopup() {
-        const popup = document.getElementById('productPopup');
-        popup.classList.remove('active');
-        document.body.style.overflow = '';
+    // Check for returning user
+    function checkReturningUser() {
+        const savedName = localStorage.getItem('userName');
+        const usernameInput = document.getElementById('username');
+        if (savedName && usernameInput) {
+            usernameInput.value = savedName;
+        }
     }
 
-    function parsePriceString(priceString) {
-    // First remove "Rs. " from the string
-    let numStr = priceString.replace("Rs. ", "");
-    // Then remove all commas
-    numStr = numStr.replace(/,/g, "");
-    // Finally convert to a number
-    return parseFloat(numStr);
-  }
-
-  function formatPrice(price) {
-      return `Rs. ${price.toLocaleString('en-IN')}`;
-  }
-
-  function updateTotalPrice() {
-    const popupPrice = document.getElementById('popupProductPrice');
-    const quantityInput = document.getElementById('quantityInput');
-    const totalPrice = document.getElementById('popupTotalPrice');
-    
-    // Get current price and quantity
-    const basePrice = parsePriceString(popupPrice.textContent);
-    const quantity = parseInt(quantityInput.value) || 1;
-    
-    // Calculate total
-    const total = basePrice * quantity;
-    
-    // Update total price display
-    totalPrice.textContent = `Total: ${formatPrice(total)}`;
-    
-    // Update WhatsApp link - find current product
-    const productId = document.getElementById('popupProductId').textContent.replace('ID: ', '');
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        const whatsappButton = document.getElementById('whatsappButton');
-        whatsappButton.href = generateWhatsAppLink(product, quantity);
-    }
-}
-
-    function generateWhatsAppLink(product, quantity) {
-        const phone = '94762057685'; // Replace with your actual WhatsApp number
-        const total = parsePriceString(product.price) * quantity;
-
-        const message = `Hello Yummy Choco House! 👋 I would like to order:\n\n` +
-                        `🎁 *Product*: ${product.name} (${product.id})\n` +
-                        `🔢 *Quantity*: ${quantity}\n` +
-                        `💰 *Total*: Rs. ${total.toLocaleString()}\n\n` +
-                        `Please advise payment and delivery details. Thank you!`;
-
-        return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    // Initialize all functions
+    function initializeAll() {
+        // Initialize all product functionality first
+        renderProducts('all'); // Load all products initially
+        initCategoryButtons();
+        
+        // Initialize UI components
+        initMobileMenu();
+        initScrollAnimations();
+        createHeartParticles();
+        initExploreButton();
+        
+        // Initialize animations
+        initNavbarAnimations();
+        initHeroAnimations();
+        initAboutSectionAnimations();
+        
+        // Initialize other functionalities
+        initSmoothScroll();
+        checkReturningUser();
     }
 
-    function showToast(message) {
-        const toast = document.getElementById('toastNotification');
-        const toastMessage = document.getElementById('toastMessage');
-        
-        toastMessage.textContent = message;
-        toast.classList.add('show');
-        
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
-    }
-
-    function attachEventListeners() {
-        // Category filter buttons
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const category = button.dataset.category;
-                filterProducts(category);
-            });
-        });
-        
-        // Close popup
-        document.getElementById('closePopup').addEventListener('click', closeProductPopup);
-        document.getElementById('productPopup').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('productPopup')) {
-                closeProductPopup();
-            }
-        });
-        
-        // Quantity buttons
-        document.querySelector('.quantity-btn.decrement').addEventListener('click', () => {
-            const quantityInput = document.getElementById('quantityInput');
-            if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-                updateTotalPrice();
-            }
-        });
-        
-        document.querySelector('.quantity-btn.increment').addEventListener('click', () => {
-            const quantityInput = document.getElementById('quantityInput');
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-            updateTotalPrice();
-        });
-        
-        // Ensure quantity input changes update the price
-        document.getElementById('quantityInput').addEventListener('input', () => {
-            updateTotalPrice();
-        });
-        
-        document.getElementById('quantityInput').addEventListener('change', () => {
-            const quantityInput = document.getElementById('quantityInput');
-            if (parseInt(quantityInput.value) < 1 || isNaN(parseInt(quantityInput.value))) {
-                quantityInput.value = 1;
-            }
-            updateTotalPrice();
-        });
-        
-        // Sticky category navigation
-        window.addEventListener('scroll', () => {
-            const categories = document.getElementById('categories');
-            const shop = document.getElementById('shop');
-            const shopOffset = shop.offsetTop;
-            
-            if (window.pageYOffset > shopOffset - 80) {
-                categories.classList.add('bg-white', 'shadow-md');
-            } else {
-                categories.classList.remove('bg-white', 'shadow-md');
-            }
-        });
-    }
+    // Run everything on page load
+    initializeAll();
 });
-</script>
-  </body>
+
+  // JavaScript for scroll to top button
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    // Show button when scrolled down
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) { // Show after 300px of scrolling
+            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+            scrollToTopBtn.classList.add('opacity-0', 'translate-y-10');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add mobile menu functionality (this was commented out in your original code)
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    
+    if (menuToggle && mobileMenu && closeMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+    }
+    </script>
 
 
+
+
+</body>
 </html>
