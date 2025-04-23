@@ -51,7 +51,6 @@
             overflow-x: hidden;
             background-color: #fffbf0;
             background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23be8a60' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-
         }
         
         .playfair {
@@ -60,15 +59,15 @@
         
         /* Logo styles */
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             transition: all 0.3s ease;
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .logo {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
         }
         
@@ -76,7 +75,6 @@
         .nav-link {
             position: relative;
             transition: all 0.3s ease;
-            
         }
         
         .nav-link::after {
@@ -99,17 +97,19 @@
             transition: transform 0.4s ease, opacity 0.4s ease;
             transform: translateY(-100%);
             opacity: 0;
+            pointer-events: none;
         }
         
         .mobile-menu.active {
             transform: translateY(0);
             opacity: 1;
+            pointer-events: auto;
         }
         
         /* Custom button styles */
         .choco-btn {
             background: linear-gradient(135deg, #805939, #4b2d20);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             color: white;
             border-radius: 9999px;
             font-weight: 600;
@@ -118,6 +118,12 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .choco-btn {
+                padding: 1rem 2rem;
+            }
         }
         
         .choco-btn::before {
@@ -153,9 +159,16 @@
         
         /* Swiper custom styles */
         .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (min-width: 768px) {
+            .swiper-pagination-bullet {
+                width: 12px;
+                height: 12px;
+            }
         }
         
         .swiper-pagination-bullet-active {
@@ -166,15 +179,32 @@
         .swiper-button-prev {
             color: #fff;
             background: rgba(0, 0, 0, 0.3);
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             backdrop-filter: blur(4px);
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: flex;
+                width: 40px;
+                height: 40px;
+            }
         }
         
         .swiper-button-next:after,
         .swiper-button-prev:after {
-            font-size: 18px;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+                font-size: 18px;
+            }
         }
         
         /* Chocolate drip effect */
@@ -204,12 +234,12 @@
             background-repeat: repeat-x;
         }
         
-        /* Rotating chocolates animation */
-        /* @keyframes float-rotate {
+        /* Floating animation */
+        @keyframes float-rotate {
             0% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(8deg); }
             100% { transform: translateY(0) rotate(0deg); }
-        } */
+        }
 
         .float-rotate {
             animation: float-rotate 6s ease-in-out infinite;
@@ -219,19 +249,21 @@
             animation: float-rotate 7s ease-in-out infinite reverse;
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f5edd0;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #805939;
-            border-radius: 6px;
-            border: 3px solid #f5edd0;
+        /* Custom scrollbar - only for desktop */
+        @media (min-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 12px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: #f5edd0;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: #805939;
+                border-radius: 6px;
+                border: 3px solid #f5edd0;
+            }
         }
         
         /* Product card hover effect */
@@ -263,12 +295,52 @@
         
         /* Decorative chocolate elements */
         .choco-square {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             background: linear-gradient(135deg, #805939, #4b2d20);
             border-radius: 6px;
             box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.2), 0 5px 10px rgba(0, 0, 0, 0.1);
         }
+        
+ /* Improved Mobile Responsiveness */
+ @media (max-width: 767px) {
+        .product-showcase {
+            height: 60vh !important; /* Use viewport height for better scaling */
+            margin: 0 -1rem; /* Remove side margins */
+        }
+
+        .chocolateSwiper .swiper-slide {
+            width: 100% !important;
+            padding: 1rem;
+        }
+
+        .chocolateSwiper .swiper-slide img {
+            max-height: 40vh !important;
+            width: auto !important;
+            margin: 0 auto;
+        }
+
+        .swiper-pagination {
+            bottom: 10px !important;
+        }
+
+        .product-card-info {
+            padding: 1rem !important;
+        }
+
+        .product-card-info h3 {
+            font-size: 1.2rem !important;
+        }
+
+        .product-card-info p {
+            font-size: 0.8rem !important;
+        }
+    }
+
+    /* Improved Swiper transitions */
+    .swiper-slide {
+        transition: transform 0.3s ease-in-out;
+    }
     </style>
 </head>
 <body>
@@ -277,9 +349,9 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="/" class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-2 md:gap-3">
                     <img src="logo.jpg" alt="Yummy Choco House Logo" class="logo rounded-full">
-                    <span class="playfair text-2xl font-bold text-chocolate">Yummy Choco House</span>
+                    <span class="playfair text-xl md:text-2xl font-bold text-chocolate">Yummy Choco House</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
@@ -306,7 +378,7 @@
         </div>
         
         <!-- Mobile Navigation Menu -->
-        <div class="mobile-menu absolute top-full left-0 w-full bg-cream-light shadow-md md:hidden" id="mobile-menu">
+        <div class="mobile-menu absolute top-full left-0 w-full bg-cream-light shadow-md md:hidden z-50" id="mobile-menu">
             <div class="container mx-auto px-4 py-6 flex flex-col gap-4">
                 <a href="#" class="text-chocolate-dark font-medium hover:text-chocolate py-2 border-b border-chocolate/10">Home</a>
                 <a href="#" class="text-chocolate-dark font-medium hover:text-chocolate py-2 border-b border-chocolate/10">Products</a>
@@ -321,7 +393,7 @@
     </header>
     
     <!-- Hero Section -->
-    <section class="relative min-h-screen overflow-hidden flex flex-col justify-center items-center pt-20 md:pt-0">
+    <section class="relative min-h-screen overflow-hidden flex flex-col justify-center items-center pt-20 pb-16 md:py-0">
         <!-- Patterned Background -->
         <div class="bg-pattern absolute inset-0 z-0"></div>
         
@@ -330,41 +402,41 @@
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-caramel/10 rounded-full blur-3xl"></div>
         
         <!-- Main Content -->
-        <div class="container mx-auto px-4 lg:px-8 relative z-10 py-20 lg:py-0">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="container mx-auto px-4 lg:px-8 relative z-10 py-8 md:py-16 lg:py-0">
+            <div class="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
                 <!-- Left Column - Content -->
-                <div class="lg:col-span-5 space-y-10">
+                <div class="lg:col-span-5 space-y-6 md:space-y-10">
                     <!-- Brand Badge -->
-                    <div class="inline-block mb-6" data-gsap="fadeIn">
-                        <div class="flex items-center gap-3 px-4 py-2 bg-cream rounded-full shadow-sm">
-                            <div class="w-8 h-8 bg-chocolate rounded-full flex items-center justify-center">
+                    <div class="inline-block mb-4 md:mb-6" data-gsap="fadeIn">
+                        <div class="flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1 md:py-2 bg-cream rounded-full shadow-sm">
+                            <div class="w-6 h-6 md:w-8 md:h-8 bg-chocolate rounded-full flex items-center justify-center">
                                 <i class="fas fa-star text-xs text-white"></i>
                             </div>
-                            <span class="text-chocolate font-medium text-sm">Premium Sri Lankan Chocolates</span>
+                            <span class="text-chocolate font-medium text-xs md:text-sm">Premium Sri Lankan Chocolates</span>
                         </div>
                     </div>
                     
                     <!-- Heading -->
-                    <div class="space-y-6" data-gsap="staggered">
-                        <h1 class="playfair text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                    <div class="space-y-4 md:space-y-6" data-gsap="staggered">
+                        <h1 class="playfair text-3xl md:text-5xl lg:text-7xl font-bold leading-tight">
                             <span class="block text-chocolate-dark">Indulge in</span>
                             <span class="block bg-gradient-to-r from-chocolate to-caramel bg-clip-text text-transparent">
                                 Sweet Perfection
                             </span>
                         </h1>
                         
-                        <p class="text-lg text-chocolate-dark/70 max-w-xl leading-relaxed">
+                        <p class="text-base md:text-lg text-chocolate-dark/70 max-w-xl leading-relaxed">
                             Experience handcrafted chocolates that blend Sri Lankan flavors with artisanal tradition. Perfect for gifting, celebrating, or treating yourself.
                         </p>
                         
                         <!-- CTA Buttons -->
-                        <div class="flex flex-wrap gap-4 pt-4">
-                            <button class="choco-btn flex items-center gap-2 group">
+                        <div class="flex flex-wrap gap-3 md:gap-4 pt-2 md:pt-4">
+                            <button class="choco-btn flex items-center gap-2 group text-sm md:text-base">
                                 <span>Explore Collection</span>
                                 <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                             </button>
                             
-                            <a href="#" class="flex items-center gap-2 px-6 py-4 text-chocolate font-medium hover:text-chocolate-dark transition-colors">
+                            <a href="#" class="flex items-center gap-2 px-4 py-3 md:px-6 md:py-4 text-chocolate font-medium hover:text-chocolate-dark transition-colors text-sm md:text-base">
                                 <i class="fas fa-play-circle"></i>
                                 <span>Watch Process</span>
                             </a>
@@ -372,18 +444,18 @@
                     </div>
                     
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-6 pt-6" data-gsap="staggered">
+                    <div class="grid grid-cols-3 gap-3 md:gap-6 pt-4 md:pt-6" data-gsap="staggered">
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-chocolate">15+</div>
-                            <div class="text-sm text-chocolate-dark/70 mt-1">Flavors</div>
+                            <div class="text-2xl md:text-3xl font-bold text-chocolate">15+</div>
+                            <div class="text-xs md:text-sm text-chocolate-dark/70 mt-1">Flavors</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-chocolate">1000+</div>
-                            <div class="text-sm text-chocolate-dark/70 mt-1">Happy Customers</div>
+                            <div class="text-2xl md:text-3xl font-bold text-chocolate">1000+</div>
+                            <div class="text-xs md:text-sm text-chocolate-dark/70 mt-1">Happy Customers</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-chocolate">24h</div>
-                            <div class="text-sm text-chocolate-dark/70 mt-1">Fast Delivery</div>
+                            <div class="text-2xl md:text-3xl font-bold text-chocolate">24h</div>
+                            <div class="text-xs md:text-sm text-chocolate-dark/70 mt-1">Fast Delivery</div>
                         </div>
                     </div>
                 </div>
@@ -402,17 +474,17 @@
                 <!-- Right Column - Product Showcase -->
                 <div class="lg:col-span-6 relative" data-gsap="fadeScale">
                     <!-- Product Showcase - Swiper -->
-                    <div class="product-showcase relative bg-white rounded-3xl shadow-xl overflow-hidden" style="height: 550px;">
+                    <div class="product-showcase relative bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden">
                         <!-- Chocolate drip effect -->
                         <div class="choco-drip"></div>
                         
-                        <!-- 3D Swiper -->
+                        <!-- Swiper -->
                         <div class="swiper chocolateSwiper h-full w-full">
                             <div class="swiper-wrapper">
                                 <!-- Slide 1 -->
                                 <div class="swiper-slide">
                                     <div class="flex flex-col h-full">
-                                        <div class="flex-1 flex items-center justify-center p-8 relative overflow-hidden">
+                                        <div class="flex-1 flex items-center justify-center p-6 md:p-8 relative overflow-hidden">
                                             <!-- Background gradient -->
                                             <div class="absolute inset-0 bg-gradient-to-br from-chocolate/10 to-chocolate/20"></div>
                                             
@@ -423,12 +495,11 @@
                                         </div>
                                         
                                         <!-- Product info -->
-                                        <div class="p-6 bg-white">
-                                            <div class="flex justify-between items-center mb-2">
-                                                <h3 class="playfair text-2xl font-bold text-chocolate-dark">Luxury Gift Box</h3>
-                                                <!-- <span class="text-chocolate font-bold">$29.99</span> -->
+                                        <div class="p-4 md:p-6 bg-white">
+                                            <div class="flex justify-between items-center mb-1 md:mb-2">
+                                                <h3 class="playfair text-xl md:text-2xl font-bold text-chocolate-dark">Luxury Gift Box</h3>
                                             </div>
-                                            <p class="text-chocolate-dark/70 text-sm">Assorted premium chocolates in elegant packaging</p>
+                                            <p class="text-chocolate-dark/70 text-xs md:text-sm">Assorted premium chocolates in elegant packaging</p>
                                         </div>
                                     </div>
                                 </div>
@@ -436,7 +507,7 @@
                                 <!-- Slide 2 -->
                                 <div class="swiper-slide">
                                     <div class="flex flex-col h-full">
-                                        <div class="flex-1 flex items-center justify-center p-8 relative overflow-hidden">
+                                        <div class="flex-1 flex items-center justify-center p-6 md:p-8 relative overflow-hidden">
                                             <!-- Background gradient -->
                                             <div class="absolute inset-0 bg-gradient-to-br from-caramel/10 to-caramel/20"></div>
                                             
@@ -447,12 +518,11 @@
                                         </div>
                                         
                                         <!-- Product info -->
-                                        <div class="p-6 bg-white">
-                                            <div class="flex justify-between items-center mb-2">
-                                                <h3 class="playfair text-2xl font-bold text-chocolate-dark">Birthday Special</h3>
-                                                <!-- <span class="text-chocolate font-bold">$34.99</span> -->
+                                        <div class="p-4 md:p-6 bg-white">
+                                            <div class="flex justify-between items-center mb-1 md:mb-2">
+                                                <h3 class="playfair text-xl md:text-2xl font-bold text-chocolate-dark">Birthday Special</h3>
                                             </div>
-                                            <p class="text-chocolate-dark/70 text-sm">Celebration box with teddy bear and chocolates</p>
+                                            <p class="text-chocolate-dark/70 text-xs md:text-sm">Celebration box with teddy bear and chocolates</p>
                                         </div>
                                     </div>
                                 </div>
@@ -460,7 +530,7 @@
                                 <!-- Slide 3 -->
                                 <div class="swiper-slide">
                                     <div class="flex flex-col h-full">
-                                        <div class="flex-1 flex items-center justify-center p-8 relative overflow-hidden">
+                                        <div class="flex-1 flex items-center justify-center p-6 md:p-8 relative overflow-hidden">
                                             <!-- Background gradient -->
                                             <div class="absolute inset-0 bg-gradient-to-br from-cream-dark/20 to-cream-dark/30"></div>
                                             
@@ -471,12 +541,11 @@
                                         </div>
                                         
                                         <!-- Product info -->
-                                        <div class="p-6 bg-white">
-                                            <div class="flex justify-between items-center mb-2">
-                                                <h3 class="playfair text-2xl font-bold text-chocolate-dark">Premium Truffles</h3>
-                                                <!-- <span class="text-chocolate font-bold">$24.99</span> -->
+                                        <div class="p-4 md:p-6 bg-white">
+                                            <div class="flex justify-between items-center mb-1 md:mb-2">
+                                                <h3 class="playfair text-xl md:text-2xl font-bold text-chocolate-dark">Premium Truffles</h3>
                                             </div>
-                                            <p class="text-chocolate-dark/70 text-sm">Handcrafted truffles with local Sri Lankan flavors</p>
+                                            <p class="text-chocolate-dark/70 text-xs md:text-sm">Handcrafted truffles with local Sri Lankan flavors</p>
                                         </div>
                                     </div>
                                 </div>
@@ -488,25 +557,17 @@
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                    
-                    <!-- Floating Decorative Elements -->
-                    <!-- <div class="absolute -top-8 -right-8 w-24 h-24 float-rotate hidden lg:block">
-                        <img src="/api/placeholder/96/96" alt="Chocolate piece" class="w-full h-full object-contain">
-                    </div>
-                    <div class="absolute -bottom-12 -left-8 w-32 h-32 float-rotate-reverse hidden lg:block">
-                        <img src="/api/placeholder/128/128" alt="Chocolate truffle" class="w-full h-full object-contain">
-                    </div> -->
                 </div>
             </div>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <!-- <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-chocolate" id="scroll-indicator">
+        <br><br><br><br><br>
+        <!-- Scroll Indicator - Only on desktop -->
+        <div class="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center text-chocolate" id="scroll-indicator">
             <span class="text-sm font-medium mb-2">Discover More</span>
             <div class="w-8 h-12 border-2 border-chocolate rounded-full flex items-start justify-center p-2">
                 <div class="w-1 h-3 bg-chocolate rounded-full animate-bounce"></div>
             </div>
-        </div> -->
+        </div>
     </section>
     
     <!-- Scripts -->
@@ -547,19 +608,24 @@
             }
         });
         
-        // Initialize Swiper
-        const swiper = new Swiper(".chocolateSwiper", {
-            effect: "cards",
+        // Check device width for Swiper configuration
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
+        
+        // Initialize Swiper with responsive settings
+        let swiper;
+        
+        function initSwiper() {
+        if (swiper) {
+            swiper.destroy(true, true);
+        }
+
+        const isMobile = window.innerWidth < 768;
+        
+        const commonSettings = {
             grabCursor: true,
             centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: true,
-            },
             loop: true,
             autoplay: {
                 delay: 3000,
@@ -573,14 +639,58 @@
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 30,
+                }
+            }
+        };
+
+        // Mobile-specific settings
+        if (isMobile) {
+            swiper = new Swiper('.chocolateSwiper', {
+                ...commonSettings,
+                effect: 'slide',
+                slidesPerView: 1,
+                spaceBetween: 20,
+            });
+        } else {
+            // Desktop settings
+            swiper = new Swiper('.chocolateSwiper', {
+                ...commonSettings,
+                effect: 'coverflow',
+                coverflowEffect: {
+                    rotate: 5,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                slidesPerView: 'auto',
+                spaceBetween: 30,
+            });
+        }
+    }
+        
+        // Initialize Swiper
+        initSwiper();
+        
+        // Re-initialize on window resize
+        window.addEventListener('resize', () => {
+            initSwiper();
         });
         
         // GSAP Animations
         document.addEventListener('DOMContentLoaded', () => {
-            // Register ScrollTrigger
+            // Initialize GSAP ScrollTrigger
             gsap.registerPlugin(ScrollTrigger);
             
-            // Fade In
+            // Fade In animations for elements
             gsap.utils.toArray('[data-gsap="fadeIn"]').forEach(element => {
                 gsap.from(element, {
                     opacity: 0,
@@ -589,105 +699,58 @@
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: element,
-                        start: "top bottom-=100",
+                        start: "top 80%",
                         toggleActions: "play none none none"
                     }
                 });
             });
             
-            // Staggered Elements
+            // Staggered animations for elements
             gsap.utils.toArray('[data-gsap="staggered"]').forEach(element => {
                 gsap.from(element.children, {
                     opacity: 0,
-                    y: 30,
-                    stagger: 0.15,
+                    y: 20,
                     duration: 0.8,
-                    ease: "power3.out",
+                    stagger: 0.2,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: element,
-                        start: "top bottom-=100",
+                        start: "top 75%",
                         toggleActions: "play none none none"
                     }
                 });
             });
             
-            // Fade Scale
+            // Scale and fade animations
             gsap.utils.toArray('[data-gsap="fadeScale"]').forEach(element => {
                 gsap.from(element, {
                     opacity: 0,
                     scale: 0.9,
                     duration: 1.2,
-                    ease: "back.out(1.7)",
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: element,
-                        start: "top bottom-=100",
+                        start: "top 75%",
                         toggleActions: "play none none none"
                     }
                 });
             });
             
-            // Parallax effect on scroll
-            gsap.to(".product-showcase", {
-                y: -50,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "section",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-            
-            // Scroll indicator fade out on scroll
-            gsap.to("#scroll-indicator", {
-                opacity: 0,
-                ease: "power2.in",
-                scrollTrigger: {
-                    trigger: "section",
-                    start: "top top",
-                    end: "center top",
-                    scrub: true
-                }
-            });
-        });
-        
-        // 3D Tilt effect for product showcase
-        const productShowcase = document.querySelector('.product-showcase');
-        
-        if (productShowcase) {
-            productShowcase.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = productShowcase.getBoundingClientRect();
-                const x = (e.clientX - left) / width - 0.5;
-                const y = (e.clientY - top) / height - 0.5;
-                
-                gsap.to(productShowcase, {
-                    rotationY: x * 10,
-                    rotationX: -y * 10,
-                    transformPerspective: 1000,
-                    ease: "power2.out",
-                    duration: 0.5
+            // Scroll indicator animation
+            const scrollIndicator = document.getElementById('scroll-indicator');
+            if (scrollIndicator) {
+                gsap.to(scrollIndicator, {
+                    opacity: 0,
+                    y: 20,
+                    scrollTrigger: {
+                        trigger: 'section',
+                        start: "top top",
+                        end: "10% top",
+                        scrub: true
+                    }
                 });
-            });
-            
-            productShowcase.addEventListener('mouseleave', () => {
-                gsap.to(productShowcase, {
-                    rotationY: 0,
-                    rotationX: 0,
-                    duration: 1,
-                    ease: "elastic.out(1, 0.5)"
-                });
-            });
-        }
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+            }
         });
     </script>
 </body>
+</html>
